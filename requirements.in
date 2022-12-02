@@ -1,0 +1,9 @@
+pytest
+pytest-mock
+pytest-xdist
+pytest-cov
+black
+fastcore
+jupyterlab
+jupyterlab-vim
+
