@@ -3,6 +3,33 @@ title: "Day1"
 jupyter: python3
 ---
 
-```python
+## Part 1
 
+* Read in input file contain list of calories
+```{python}
+with open("day1/input1.txt") as f:
+    input = f.read().splitlines()
+```
+
+* For each sequence of numbers punctuated by 
+an empty line, sum up calories for each 
+* If sum of calories is greater than current max, set that as the current max
+
+```{python}
+from butchland_aoc2022.day1 import *
+max_calories = sum_top_n(input,1)
+```
+
+```{python}
+print(max_calories)
+```
+
+## Part 2
+
+```{python}
+max_calories = sum_top_n(input, 3)
+```
+
+```{python}
+print(max_calories)
 ```

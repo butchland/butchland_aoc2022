@@ -16,7 +16,7 @@ website:
 
       - section: Exercises
         contents:
-        - href: day1.qmd
+        - href: exercises/day1.qmd
           text: Day 1
   page-footer:
     border: false
