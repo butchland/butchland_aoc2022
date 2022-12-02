@@ -1,0 +1,9 @@
+[project]
+name = "butchland_aoc2022"
+version = "0.0.1"
+
+[build-system]
+build-backend = 'setuptools.build_meta'
+requires = [
+    'setuptools >= 43.0.0',
+]
