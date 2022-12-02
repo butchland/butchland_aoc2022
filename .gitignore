@@ -129,3 +129,6 @@ _docs/
 
 env/
 .quarto/
+
+/env/
+/.quarto/
