@@ -3,6 +3,12 @@ title: "Day1"
 jupyter: python3
 ---
 
+```{python}
+#| echo: false
+import nbdev.showdoc as sd
+from pprint import pprint
+```
+
 ## Part 1
 
 * Read in input file contain list of calories
@@ -10,26 +16,68 @@ jupyter: python3
 with open("day1/input1.txt") as f:
     input = f.read().splitlines()
 ```
+First 100 lines of input looks like
+this:
+
+```{python}
+#| echo: false
+pprint(input[:100])
+```
+
+* Create a generator that returns the totals each time it iterates
+
+```{python}
+#| echo: false
+from butchland_aoc2022.day1 import *
+
+```
+
+
+```{python}
+#| echo: false
+sd.show_doc(generate_totals)
+```
+
+```{python}
+sample = ['1','1','','2','3']
+pprint(list(generate_totals(sample)))
+```
+
+* Create a function that sums the top n
+
+```{python}
+#| echo: false
+sd.show_doc(sum_top_n)
+```
+
 
 * For each sequence of numbers punctuated by 
 an empty line, sum up calories for each 
 * If sum of calories is greater than current max, set that as the current max
 
 ```{python}
-from butchland_aoc2022.day1 import *
-max_calories = sum_top_n(input,1)
+sample = ['1','1','','3','','1','','2','','4','','5']
+max_calories = sum_top_n(sample,1)
+print(max_calories)
 ```
 
 ```{python}
+max_calories = sum_top_n(sample,3)
 print(max_calories)
+```
+
+* Finally the answer for the top 1 given the input
+
+```{python}
+max_calories = sum_top_n(input, 1)
+print(f'the correct answer for part 1 is {max_calories}')
 ```
 
 ## Part 2
 
-```{python}
-max_calories = sum_top_n(input, 3)
-```
+* Part 2 is now easy, since we can handle top `n`
 
 ```{python}
-print(max_calories)
+max_calories = sum_top_n(input, 3)
+print(f'the correct answer for part 2 is {max_calories}')
 ```
