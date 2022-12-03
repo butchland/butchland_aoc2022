@@ -9,6 +9,7 @@ testpaths = [
 
 [tool.pyright]
 reportShadowedImports = false
+reportWildcardImportFromLibrary = false
 
 [build-system]
 build-backend = 'setuptools.build_meta'
