@@ -7,6 +7,27 @@
     "text": "My answers to the Advent of Code 2022 Edition"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Advent of Code 2022",
+    "section": "",
+    "text": "This is my ongoing journal as I try to complete the 2022 Edition of the Advent of Code\nMy goal is not to get the highest amount of stars, but I’ll be happy to complete the 50 stars which would mean I solved all the problems.\nMy primary objective (aside from solving the problem) is to try to solve the problems as professionally as possible. e.g."
+  },
+  {
+    "objectID": "index.html#links",
+    "href": "index.html#links",
+    "title": "Advent of Code 2022",
+    "section": "Links",
+    "text": "Links\n\nGithub Repo - contains the code solution to get the answers\nMy Advent of Code 2022 Solutions - spoiler alert : the exercise pages contains the answers\nAdvent of Code"
+  },
+  {
+    "objectID": "index.html#tech-stack",
+    "href": "index.html#tech-stack",
+    "title": "Advent of Code 2022",
+    "section": "Tech stack",
+    "text": "Tech stack\n\npython\npytest\nquarto\nnbdev"
+  },
+  {
     "objectID": "exercises/day1.html",
     "href": "exercises/day1.html",
     "title": "Day1",
