@@ -20,6 +20,8 @@ website:
           text: Day 1
         - href: exercises/day2.qmd
           text: Day 2
+        - href: exercises/day3.qmd
+          text: Day 3
  
   page-footer:
     border: false

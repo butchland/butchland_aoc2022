@@ -1,0 +1,137 @@
+ ---
+title: "Day 3"
+jupyter: python3
+---
+```{python}
+#| echo: false
+import nbdev.showdoc as sd
+from pprint import pprint
+```
+## Part 1
+
+* Read in input file containing list of the contents of rucksacks
+* Each line contains items in 2 compartments equally divided
+* There is one component common to 2 compartments
+* This common component determines the priority (a-z 1-26, A-Z 27-52)
+* Get the sum of all components
+
+
+```{python}
+with open("day3/input.txt") as f:
+    input = [o.strip() for o in f.read().split("\n")]
+
+pprint(input[:5])
+
+```
+
+```{python}
+#| echo: false
+from butchland_aoc2022.day3 import *
+
+```
+* Create a function that finds the common item in the two compartments for each rucksack
+
+```{python}
+#| echo: false
+sd.show_doc(common_item)
+```
+
+```{python}
+samples = """vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw""".split("\n")
+```
+
+```{python}
+print(common_item(samples[0]))
+print(common_item(samples[1]))
+print(common_item(samples[2]))
+print(common_item(samples[3]))
+print(common_item(samples[4]))
+print(common_item(samples[5]))
+
+```
+
+* Create a function that computes the priority for an item
+
+```{python}
+#| echo: false
+sd.show_doc(priority)
+```
+
+
+```{python}
+
+print(priority('a'))
+print(priority('p'))
+print(priority('A'))
+print(priority('Z'))
+```
+* Create a function that sums all the priorities of the common element for all the rucksacks
+
+```{python}
+#| echo: false
+sd.show_doc(sum_priorities)
+```
+
+```{python}
+print(sum_priorities(samples))
+```
+
+* Finally the total score
+
+```{python}
+total_priorities = sum_priorities(input)
+print(f'the correct answer for part 1 is {total_priorities}')
+```
+
+## Part 2
+
+* Group the rucksacks into 3 each
+
+* Create a generator that returns the inputs as groups of 3:
+
+```{python}
+#| echo: false
+sd.show_doc(generate_group)
+```
+
+```{python}
+groups = list(generate_group(samples))
+print(groups[0])
+print(groups[1])
+```
+
+* Create a function that finds the badge (i.e. the common element) for a group of rucksacks 
+
+```{python}
+#| echo: false
+sd.show_doc(find_group_badge)
+```
+
+```{python}
+print(find_group_badge(groups[0]))
+print(find_group_badge(groups[1]))
+
+```
+* Create a function that sums the priorities of the badges of each group in the list of rucksacks
+
+```{python}
+#| echo: false
+sd.show_doc(sum_badge_priorities)
+```
+
+```{python}
+print(sum_badge_priorities(samples))
+```
+
+
+```{python}
+total_badge_priorities = sum_badge_priorities(input)
+print(f'the correct answer for part 2 is {total_badge_priorities}')
+```
+
+
