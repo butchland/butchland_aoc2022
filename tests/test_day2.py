@@ -27,3 +27,11 @@ def test_score(test_input, expected):
 ])
 def test_find_strat_piece(test_input, expected):
     assert find_strat_piece(*test_input) == expected
+
+@pytest.mark.parametrize("test_input, expected", [
+    ("A Y", 4),
+    ("B X", 1),
+    ("C Z", 7)
+])
+def test_score_strat_action(test_input, expected):
+    assert score_strat_action(test_input) == expected

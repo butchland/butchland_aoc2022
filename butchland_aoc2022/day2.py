@@ -12,7 +12,7 @@ unmatched_values = {
     ("Scissors", "Paper"): 6,
 }
 
-strat_values = dict(X="WIN", Y="DRAW", Z="LOSE")
+strat_values = dict(X="LOSE", Y="DRAW", Z="WIN")
 
 
 def match_value(
