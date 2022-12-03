@@ -2,6 +2,11 @@
 name = "butchland_aoc2022"
 version = "0.0.1"
 
+[tool.pytest.ini_options]
+testpaths = [
+    "tests"
+]
+
 [build-system]
 build-backend = 'setuptools.build_meta'
 requires = [
