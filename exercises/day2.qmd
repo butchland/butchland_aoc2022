@@ -2,3 +2,75 @@
 title: "Day 2"
 jupyter: python3
 ---
+```{python}
+#| echo: false
+import nbdev.showdoc as sd
+from pprint import pprint
+```
+# Part 1
+
+* Read in input file contain list of moves
+* each line contains 2 pairs: 
+    * the first column is the opponents move: Rock (A) Paper(B) Scissors(C)
+    * the second column is your move Rock (X) Paper(Y) Scissors (Z) 
+
+```{python}
+with open("day2/input.txt") as f:
+    input = f.read().splitlines()
+
+pprint(input[:5])
+
+```
+
+```{python}
+#| echo: false
+from butchland_aoc2022.day2 import *
+
+```
+
+
+```{python}
+#| echo: false
+sd.show_doc(match_value)
+```
+
+```{python}
+print(match_value("Rock","Paper"))
+print(match_value("Rock","Scissors"))
+print(match_value("Paper","Paper"))
+print(match_value("Paper","Scissors"))
+
+```
+
+* Create a function that computes the score for each line
+
+```{python}
+#| echo: false
+sd.show_doc(score)
+```
+
+
+* For each sequence of numbers punctuated by 
+an empty line, sum up calories for each 
+* If sum of calories is greater than current max, set that as the current max
+
+```{python}
+
+print(score("A Y"))
+print(score("B X"))
+print(score("C Z"))
+```
+
+* Finally the total score
+
+```{python}
+total_score = sum([score(l) for l in input])
+print(f'the correct answer for part 1 is {total_score}')
+```
+
+## Part 2
+
+* Reinterpret your move to follow a strategy: 
+   - X means WIN, Y means DRAW, Z means LOSE
+
+
