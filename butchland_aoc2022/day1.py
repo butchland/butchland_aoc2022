@@ -1,9 +1,12 @@
 __all__ = ["generate_totals", "sum_top_n"]
 
 
+from typing import Generator
+
+
 def generate_totals(
     input: list[str],  # list of strings each containing an int or empty line
-):
+) -> Generator[int, None, None]:
     """Generate totals
     from an input string
     consisting of lines
@@ -11,13 +14,12 @@ def generate_totals(
     and delimited by an empty line
     """
     total = 0
-    for l in input:
-        if len(l) == 0:
+    for line in input:
+        if len(line) == 0:
             yield total
-
             total = 0
         else:
-            total += int(l)
+            total += int(line)
 
     yield total
 

@@ -51,8 +51,7 @@ def find_strat_piece(
     opp_piece: str,  # your opponents piece (Rock, Paper,Scissors)
     your_strat: str,  # your strategy (WIN,LOSE, DRAW)
 ) -> str:
-    """Finds the piece that matches the strategy you picked given the opponent's piece
-    """
+    """Finds the piece that matches the strategy you picked given the opponent's piece"""
     if your_strat == "DRAW":
         return opp_piece
     elif your_strat == "WIN":
@@ -62,10 +61,9 @@ def find_strat_piece(
 
 
 def score_strat_action(
-        input:str, # a string containing your opponent's move and your strategy separated by a space
-    ) -> int :
-    """Returns the score given the opponents move and your strategy
-    """
+    input: str,  # a string containing your opponent's move and your strategy separated by a space
+) -> int:
+    """Returns the score given the opponents move and your strategy"""
     opp_move, your_move = input.strip().split(" ")
     opp_piece = opp_code[opp_move]
     your_strat = strat_values[your_move]
