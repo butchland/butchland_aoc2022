@@ -3,5 +3,32 @@ title: "Advent of Code 2022"
 jupyter: python3
 ---
 
+This is my ongoing journal as I try to complete the 2022 Edition 
+of the [Advent of Code](https://adventofcode.com/)
+
+My goal is not to get the highest amount of stars, but I'll be 
+happy to complete the 50 stars which would mean I solved all
+the problems.
+
+My primary objective (aside from solving the problem) is to try
+to solve the problems as professionally as possible. e.g.
+ 
+  * each solution should be built out of small, maintainable components
+  * each component should have tests
+  * each component should have some documentation (i.e. doc strings and [docments](https://fastcore.fast.ai/docments.html))
+  * each day's solution should have a discussion on what and how it solves the problem
+
+## Links 
+
+* [Github Repo](https://github.com/butchland/butchland_aoc2022) - contains the code solution to get the answers
+* [My Advent of Code 2022 Solutions](https://butchland.github.io/butchland_aoc2022/) - *spoiler alert* : the exercise pages contains the answers
+* [Advent of Code](https://adventofcode.com)
+
+## Tech stack
+
+* python
+* pytest
+* quarto
+* nbdev
 
 
