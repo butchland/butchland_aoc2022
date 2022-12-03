@@ -7,6 +7,9 @@ testpaths = [
     "tests"
 ]
 
+[tool.pyright]
+reportShadowedImports = false
+
 [build-system]
 build-backend = 'setuptools.build_meta'
 requires = [
