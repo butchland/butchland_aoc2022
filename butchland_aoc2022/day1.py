@@ -2,7 +2,7 @@ __all__ = ["generate_totals", "sum_top_n"]
 
 
 from typing import Generator
-
+from fastcore.all import *
 
 def generate_totals(
     input: list[str],  # list of strings each containing an int or empty line
@@ -29,18 +29,12 @@ def sum_top_n(
     n: int,  # top n count
 ):
     """Sum top n of totals for the highest n totals"""
-    max_n = [0] * n
+    max_n = L([0] * n)
     low_max = 0  # track lowest
-    low_index = 0  # index of lowest
-    total = 0
-    for total in generate_totals(input):
+    for total in generate_totals(input):        
         if low_max < total:
+            low_index = max_n.argfirst(lambda x: x == low_max)
             max_n[low_index] = total
             low_max = min(max_n)
-            low_index = 0
-            for i, m in enumerate(max_n):
-                if m == low_max:
-                    low_index = i
-                    break
 
     return sum(max_n)
