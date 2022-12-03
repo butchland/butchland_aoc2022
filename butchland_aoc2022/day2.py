@@ -27,13 +27,13 @@ def match_value(
 
 
 def score(
-    input: str,  # a string containing your and your opponent's move separated by a space
+    input: str,  # a string containing your opponent's and your move separated by a space
 ) -> int:
     """Returns the score of each move by you and your opponent
     based on the combination of the match value plus the piece value.
 
-    Your move and your opponent's moves (Rock,Paper,Scissors) are
-    encoded by X,Y,Z and A,B,C respectively.
+    Your opponent's and your move (Rock,Paper,Scissors) which are
+    encoded A,B,C and by X,Y,Z respectively.
     """
     opp_move, your_move = input.strip().split(" ")
     opp_piece = opp_code[opp_move]
@@ -51,7 +51,8 @@ def find_strat_piece(
     opp_piece: str,  # your opponents piece (Rock, Paper,Scissors)
     your_strat: str,  # your strategy (WIN,LOSE, DRAW)
 ) -> str:
-    """Finds the piece that matches the strategy you picked given the opponent's piece"""
+    """Finds the piece that matches the strategy you picked given the opponent's piece
+    """
     if your_strat == "DRAW":
         return opp_piece
     elif your_strat == "WIN":
@@ -60,7 +61,11 @@ def find_strat_piece(
     return lose_strategy[opp_piece]
 
 
-def score_strat_action(input):
+def score_strat_action(
+        input:str, # a string containing your opponent's move and your strategy separated by a space
+    ) -> int :
+    """Returns the score given the opponents move and your strategy
+    """
     opp_move, your_move = input.strip().split(" ")
     opp_piece = opp_code[opp_move]
     your_strat = strat_values[your_move]
