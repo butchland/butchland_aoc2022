@@ -1,3 +1,2 @@
-
 def hello_world(s):
-    return f'hello, {s}'
+    return f"hello, {s}"
