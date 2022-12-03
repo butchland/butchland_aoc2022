@@ -7,7 +7,7 @@ jupyter: python3
 import nbdev.showdoc as sd
 from pprint import pprint
 ```
-# Part 1
+## Part 1
 
 * Read in input file contain list of moves
 * each line contains 2 pairs: 
