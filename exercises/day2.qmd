@@ -71,6 +71,39 @@ print(f'the correct answer for part 1 is {total_score}')
 ## Part 2
 
 * Reinterpret your move to follow a strategy: 
-   - X means WIN, Y means DRAW, Z means LOSE
+   - X means LOSE, Y means DRAW, Z means WIN
+
+* Create a function that finds the piece to fulfill a strategy (WIN,LOSE or DRAW) based on the opponent piece
+
+```{python}
+#| echo: false
+sd.show_doc(find_strat_piece)
+```
+
+```{python}
+print(find_strat_piece("Rock","DRAW"))
+print(find_strat_piece("Scissors","WIN"))
+print(find_strat_piece("Paper","LOSE"))
+```
+
+* Create a function that computes the score for each line based on the second item being the strategy
+
+```{python}
+#| echo: false
+sd.show_doc(score_strat_action)
+```
+
+```{python}
+print(score_strat_action("A Y"))
+print(score_strat_action("B X"))
+print(score_strat_action("C Z"))
+
+```
+
+
+```{python}
+total_strat_score = sum([score_strat_action(l) for l in input])
+print(f'the correct answer for part 2 is {total_strat_score}')
+```
 
 
