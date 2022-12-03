@@ -18,6 +18,9 @@ website:
         contents:
         - href: exercises/day1.qmd
           text: Day 1
+        - href: exercises/day2.qmd
+          text: Day 2
+ 
   page-footer:
     border: false
     background: light
