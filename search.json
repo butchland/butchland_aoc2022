@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About this site",
+    "section": "",
+    "text": "My answers to the Advent of Code 2022 Edition"
+  },
+  {
+    "objectID": "exercises/day1.html",
+    "href": "exercises/day1.html",
+    "title": "Day1",
+    "section": "",
+    "text": "Read in input file contain list of calories\n\n\nwith open(\"day1/input1.txt\") as f:\n    input = f.read().splitlines()\n\nFirst 100 lines of input looks like this:\n\n\n['13399',\n '13677',\n '11945',\n '9861',\n '6484',\n '4257',\n '',\n '6616',\n '7349',\n '7758',\n '1591',\n '6068',\n '9217',\n '6924',\n '6766',\n '',\n '10040',\n '9088',\n '11305',\n '5867',\n '10766',\n '9996',\n '11092',\n '',\n '1320',\n '4921',\n '2338',\n '1351',\n '3462',\n '5916',\n '3124',\n '1416',\n '3655',\n '4886',\n '1135',\n '5171',\n '5020',\n '5099',\n '4785',\n '',\n '1702',\n '5083',\n '3852',\n '3361',\n '2505',\n '3767',\n '1069',\n '3564',\n '3189',\n '5950',\n '2250',\n '2053',\n '1639',\n '1430',\n '4586',\n '',\n '4135',\n '7033',\n '4649',\n '3126',\n '1136',\n '1435',\n '3825',\n '2205',\n '1259',\n '5473',\n '1803',\n '6406',\n '',\n '2466',\n '30094',\n '',\n '3122',\n '2983',\n '5988',\n '4214',\n '5278',\n '1974',\n '7109',\n '2419',\n '3777',\n '8299',\n '',\n '10191',\n '6122',\n '7298',\n '7855',\n '8666',\n '4777',\n '6833',\n '8862',\n '',\n '6100',\n '5332',\n '1908',\n '2796',\n '1818',\n '4657',\n '1650',\n '5560']\n\n\n\nCreate a generator that returns the totals each time it iterates\n\n\n\n\n\n\n\n generate_totals (input:list[str])\n\nGenerate totals from an input string consisting of lines where each line is an integer and delimited by an empty line\n\n\n\n\nType\nDetails\n\n\n\n\ninput\nlist\nlist of strings each containing an int or empty line\n\n\n\n\n\n\n\nsample = ['1','1','','2','3']\npprint(list(generate_totals(sample)))\n\n[2, 5]\n\n\n\nCreate a function that sums the top n\n\n\n\n\n\n\n\n sum_top_n (input:list[str], n:int)\n\nSum top n of totals for the highest n totals\n\n\n\n\nType\nDetails\n\n\n\n\ninput\nlist\nlist of strings each containing an int or empty line\n\n\nn\nint\ntop n count\n\n\n\n\n\n\n\nFor each sequence of numbers punctuated by an empty line, sum up calories for each\nIf sum of calories is greater than current max, set that as the current max\n\n\nsample = ['1','1','','3','','1','','2','','4','','5']\nmax_calories = sum_top_n(sample,1)\nprint(max_calories)\n\n5\n\n\n\nmax_calories = sum_top_n(sample,3)\nprint(max_calories)\n\n12\n\n\n\nFinally the answer for the top 1 given the input\n\n\nmax_calories = sum_top_n(input, 1)\nprint(f'the correct answer for part 1 is {max_calories}')\n\nthe correct answer for part 1 is 75622"
+  },
+  {
+    "objectID": "exercises/day1.html#part-2",
+    "href": "exercises/day1.html#part-2",
+    "title": "Day1",
+    "section": "Part 2",
+    "text": "Part 2\n\nPart 2 is now easy, since we can handle top n\n\n\nmax_calories = sum_top_n(input, 3)\nprint(f'the correct answer for part 2 is {max_calories}')\n\nthe correct answer for part 2 is 213159"
+  }
+]
