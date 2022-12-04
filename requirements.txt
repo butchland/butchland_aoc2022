@@ -16,7 +16,11 @@ argon2-cffi-bindings==21.2.0
 argparse-ext==1.4.2
     # via jinja-cli
 asttokens==2.2.0
-    # via stack-data
+    # via
+    #   nbdev
+    #   stack-data
+astunparse==1.6.3
+    # via nbdev
 attrs==22.1.0
     # via
     #   jsonschema
@@ -51,14 +55,22 @@ entrypoints==0.4
     # via jupyter-client
 exceptiongroup==1.0.4
     # via pytest
+execnb==0.1.4
+    # via nbdev
 execnet==1.9.0
     # via pytest-xdist
 executing==1.2.0
     # via stack-data
 fastcore==1.5.27
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   execnb
+    #   ghapi
+    #   nbdev
 fastjsonschema==2.16.2
     # via nbformat
+ghapi==1.0.3
+    # via nbdev
 idna==3.4
     # via
     #   anyio
@@ -75,6 +87,7 @@ ipykernel==6.17.1
     #   notebook
 ipython==8.7.0
     # via
+    #   execnb
     #   ipykernel
     #   jupyterlab
 ipython-genutils==0.2.0
@@ -154,6 +167,8 @@ nbconvert==7.2.5
     #   jupyter-server
     #   nbclassic
     #   notebook
+nbdev==2.3.9
+    # via -r requirements.in
 nbformat==5.7.0
     # via
     #   jupyter-server
@@ -174,6 +189,7 @@ notebook-shim==0.2.2
 packaging==21.3
     # via
     #   fastcore
+    #   ghapi
     #   ipykernel
     #   jupyter-server
     #   jupyterlab
@@ -238,7 +254,9 @@ python-dateutil==2.8.2
 pytz==2022.6
     # via babel
 pyyaml==6.0
-    # via jinja-cli
+    # via
+    #   jinja-cli
+    #   nbdev
 pyzmq==24.0.1
     # via
     #   ipykernel
@@ -256,6 +274,7 @@ send2trash==1.8.0
 six==1.16.0
     # via
     #   asttokens
+    #   astunparse
     #   bleach
     #   python-dateutil
 sniffio==1.3.0
@@ -303,6 +322,8 @@ typing-extensions==4.4.0
     # via black
 urllib3==1.26.13
     # via requests
+watchdog==2.1.9
+    # via nbdev
 wcwidth==0.2.5
     # via prompt-toolkit
 webencodings==0.5.1
@@ -311,6 +332,8 @@ webencodings==0.5.1
     #   tinycss2
 websocket-client==1.4.2
     # via jupyter-server
+wheel==0.38.4
+    # via astunparse
 xmltodict==0.13.0
     # via jinja-cli
 zipp==3.11.0
