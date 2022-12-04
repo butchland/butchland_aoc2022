@@ -110,10 +110,19 @@ print(get_overlapping(samples))
 
 * Finally the answer for the count of overlapping assignments
 
+::: {.panel-tabset}
+
+## Hide
+
+Click on the **Answer** tab to view the answer
+
+## Answer
+
 ```{python}
 overlapping = get_overlapping(input)
 print(f'the correct answer for part 1 is {len(overlapping)}')
 ```
+:::
 
 ## Part 2
 * Create a function to check if one range partially contains the other
@@ -159,7 +168,15 @@ print(get_partly_overlapping(samples))
 
 * Finally the answer for the partially or fully overlapping given the input
 
+::: {.panel-tabset}
+
+## Hide 
+Click on the **Answer** tab to view the answer
+
+## Answer
+
 ```{python}
 overlapping = get_partly_overlapping(input)
 print(f'the correct answer for part 2 is {len(overlapping)}')
 ```
+:::

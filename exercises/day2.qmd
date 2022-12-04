@@ -63,10 +63,19 @@ print(score("C Z"))
 
 * Finally the total score
 
+::: {.panel-tabset}
+
+## Hide
+
+Click on the **Answer** tab to view the answer
+
+## Answer
+
 ```{python}
 total_score = sum([score(l) for l in input])
 print(f'the correct answer for part 1 is {total_score}')
 ```
+:::
 
 ## Part 2
 
@@ -99,11 +108,17 @@ print(score_strat_action("B X"))
 print(score_strat_action("C Z"))
 
 ```
+::: {.panel-tabset}
 
+## Hide
+
+Click on the **Answer** tab to view the answer
+
+## Answer
 
 ```{python}
 total_strat_score = sum([score_strat_action(l) for l in input])
 print(f'the correct answer for part 2 is {total_strat_score}')
 ```
 
-
+:::

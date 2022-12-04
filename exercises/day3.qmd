@@ -83,10 +83,20 @@ print(sum_priorities(samples))
 
 * Finally the total score
 
+::: {.panel-tabset}
+
+## Hide
+
+Click on the **Answer** tab to view the answer
+
+## Answer
+
 ```{python}
 total_priorities = sum_priorities(input)
 print(f'the correct answer for part 1 is {total_priorities}')
 ```
+
+:::
 
 ## Part 2
 
@@ -128,10 +138,17 @@ sd.show_doc(sum_badge_priorities)
 print(sum_badge_priorities(samples))
 ```
 
+::: {.panel-tabset}
+
+## Hide
+
+Click on the **Answer** tab to view the answer
+
+## Answer
 
 ```{python}
 total_badge_priorities = sum_badge_priorities(input)
 print(f'the correct answer for part 2 is {total_badge_priorities}')
 ```
 
-
+:::

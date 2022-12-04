@@ -21,7 +21,7 @@ to solve the problems as professionally as possible. e.g.
 ## Links 
 
 * [Github Repo](https://github.com/butchland/butchland_aoc2022) - contains the code solution to get the answers
-* [My Advent of Code 2022 Solutions](https://butchland.github.io/butchland_aoc2022/) - *spoiler alert* : the exercise pages contains the answers
+* [My Advent of Code 2022 Solutions](https://butchland.github.io/butchland_aoc2022/) - _the answers are hidden by default but you can view it by clicking on the answer tab for each part_
 * [Advent of Code](https://adventofcode.com)
 
 ## Tech stack

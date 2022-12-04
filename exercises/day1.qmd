@@ -68,16 +68,36 @@ print(max_calories)
 
 * Finally the answer for the top 1 given the input
 
+::: {.panel-tabset}
+
+## Hide
+
+Click on the **Answer** tab to view the answer
+
+## Answer
+
 ```{python}
 max_calories = sum_top_n(input, 1)
 print(f'the correct answer for part 1 is {max_calories}')
 ```
 
+:::
+
 ## Part 2
 
 * Part 2 is now easy, since we can handle top `n`
+
+::: {.panel-tabset}
+
+## Hide
+
+Click on the **Answer** tab to view the answer
+
+## Answer
 
 ```{python}
 max_calories = sum_top_n(input, 3)
 print(f'the correct answer for part 2 is {max_calories}')
 ```
+
+:::
