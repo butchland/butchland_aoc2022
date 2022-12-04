@@ -24,14 +24,6 @@ this:
 pprint(input[:100])
 ```
 
-* Create a function to get the range given an assignment
-
-```{python}
-#| echo: false
-from butchland_aoc2022.day4 import *
-
-```
-
 ```{python}
 samples = """2-4,6-8
 2-3,4-5
@@ -40,6 +32,15 @@ samples = """2-4,6-8
 6-6,4-6
 2-6,4-8""".splitlines()
 ```
+* Create a function to get the range given an assignment
+
+```{python}
+#| echo: false
+from butchland_aoc2022.day4 import *
+
+```
+
+
 
 ```{python}
 #| echo: false
@@ -54,6 +55,7 @@ print(get_range("6-6"))
 * Create a function to create a pair of ranges, one for each pair of elves
 
 ```{python}
+#| echo: false
 sd.show_doc(get_assign_ranges)
 ```
 
@@ -68,6 +70,7 @@ print(get_assign_ranges(samples[4]))
 * Create a function to check if one range contains the other
 
 ```{python}
+#| echo: false
 sd.show_doc(contains)
 ```
 
@@ -82,6 +85,7 @@ print(samples[4],contains(*get_assign_ranges(samples[4])))
 * Create a function that checks if either range contains the other
 
 ```{python}
+#| echo: false
 sd.show_doc(contains_each_other)
 ```
 
@@ -96,6 +100,7 @@ print(samples[4],contains_each_other(*get_assign_ranges(samples[4])))
 * Create a function that returns all the overlapping samples given a list of samples
 
 ```{python}
+#| echo: false
 sd.show_doc(get_overlapping)
 ```
 
@@ -114,6 +119,7 @@ print(f'the correct answer for part 1 is {len(overlapping)}')
 * Create a function to check if one range partially contains the other
 
 ```{python}
+#| echo: false
 sd.show_doc(partly_contains)
 ```
 
@@ -128,6 +134,7 @@ print(samples[4],partly_contains(*get_assign_ranges(samples[4])))
 * Create a function that checks if either range partially or fully contains the other
 
 ```{python}
+#| echo: false
 sd.show_doc(partly_or_fully_contains_each_other)
 ```
 
@@ -142,6 +149,7 @@ print(samples[4],partly_or_fully_contains_each_other(*get_assign_ranges(samples[
 * Create a function that returns all the partly or fully overlapping samples given a list of samples
 
 ```{python}
+#| echo: false
 sd.show_doc(get_partly_overlapping)
 ```
 
