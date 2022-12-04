@@ -11,7 +11,7 @@ from pprint import pprint
 
 ## Part 1
 
-* Read in input file contain list of calories
+* Read in input file containing a list of section assignment pairs
 ```{python}
 with open("day4/input.txt") as f:
     input = f.read().splitlines()
@@ -24,7 +24,7 @@ this:
 pprint(input[:100])
 ```
 
-* Create a generator that returns the totals each time it iterates
+* Create a function to get the range given an assignment
 
 ```{python}
 #| echo: false
@@ -32,22 +32,126 @@ from butchland_aoc2022.day4 import *
 
 ```
 
+```{python}
+samples = """2-4,6-8
+2-3,4-5
+5-7,7-9
+2-8,3-7
+6-6,4-6
+2-6,4-8""".splitlines()
+```
 
 ```{python}
 #| echo: false
-# sd.show_doc()
+sd.show_doc(get_range)
 ```
 
-* Finally the answer for the top 1 given the input
+```{python}
+print(get_range("2-4"))
+print(get_range("6-8"))
+print(get_range("6-6"))
+```
+* Create a function to create a pair of ranges, one for each pair of elves
 
 ```{python}
+sd.show_doc(get_assign_ranges)
+```
 
-print(f'the correct answer for part 1 is')
+```{python}
+print(get_assign_ranges(samples[0]))
+print(get_assign_ranges(samples[1]))
+print(get_assign_ranges(samples[2]))
+print(get_assign_ranges(samples[3]))
+print(get_assign_ranges(samples[4]))
+
+```
+* Create a function to check if one range contains the other
+
+```{python}
+sd.show_doc(contains)
+```
+
+```{python}
+print(samples[0],contains(*get_assign_ranges(samples[0])))
+print(samples[1],contains(*get_assign_ranges(samples[1])))
+print(samples[2],contains(*get_assign_ranges(samples[2])))
+print(samples[3],contains(*get_assign_ranges(samples[3])))
+print(samples[4],contains(*get_assign_ranges(samples[4])))
+```
+
+* Create a function that checks if either range contains the other
+
+```{python}
+sd.show_doc(contains_each_other)
+```
+
+```{python}
+print(samples[0],contains_each_other(*get_assign_ranges(samples[0])))
+print(samples[1],contains_each_other(*get_assign_ranges(samples[1])))
+print(samples[2],contains_each_other(*get_assign_ranges(samples[2])))
+print(samples[3],contains_each_other(*get_assign_ranges(samples[3])))
+print(samples[4],contains_each_other(*get_assign_ranges(samples[4])))
+```
+
+* Create a function that returns all the overlapping samples given a list of samples
+
+```{python}
+sd.show_doc(get_overlapping)
+```
+
+```{python}
+print(get_overlapping(samples))
+```
+
+* Finally the answer for the count of overlapping assignments
+
+```{python}
+overlapping = get_overlapping(input)
+print(f'the correct answer for part 1 is {len(overlapping)}')
 ```
 
 ## Part 2
+* Create a function to check if one range partially contains the other
 
 ```{python}
-print(f'the correct answer for part 1 is')
+sd.show_doc(partly_contains)
 ```
 
+```{python}
+print(samples[0],partly_contains(*get_assign_ranges(samples[0])))
+print(samples[1],partly_contains(*get_assign_ranges(samples[1])))
+print(samples[2],partly_contains(*get_assign_ranges(samples[2])))
+print(samples[3],partly_contains(*get_assign_ranges(samples[3])))
+print(samples[4],partly_contains(*get_assign_ranges(samples[4])))
+```
+
+* Create a function that checks if either range partially or fully contains the other
+
+```{python}
+sd.show_doc(partly_or_fully_contains_each_other)
+```
+
+```{python}
+print(samples[0],partly_or_fully_contains_each_other(*get_assign_ranges(samples[0])))
+print(samples[1],partly_or_fully_contains_each_other(*get_assign_ranges(samples[1])))
+print(samples[2],partly_or_fully_contains_each_other(*get_assign_ranges(samples[2])))
+print(samples[3],partly_or_fully_contains_each_other(*get_assign_ranges(samples[3])))
+print(samples[4],partly_or_fully_contains_each_other(*get_assign_ranges(samples[4])))
+```
+
+* Create a function that returns all the partly or fully overlapping samples given a list of samples
+
+```{python}
+sd.show_doc(get_partly_overlapping)
+```
+
+```{python}
+print(get_partly_overlapping(samples))
+```
+
+* Finally the answer for the partially or fully overlapping given the input
+
+```{python}
+overlapping = get_partly_overlapping(input)
+print(f'the correct answer for part 2 is {len(overlapping)}')
+```
