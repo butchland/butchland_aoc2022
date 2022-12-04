@@ -6,4 +6,5 @@ black
 fastcore
 jupyterlab
 jupyterlab-vim
+jinja-cli
 

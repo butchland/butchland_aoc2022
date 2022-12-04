@@ -13,6 +13,8 @@ argon2-cffi==21.3.0
     #   notebook
 argon2-cffi-bindings==21.2.0
     # via argon2-cffi
+argparse-ext==1.4.2
+    # via jinja-cli
 asttokens==2.2.0
     # via stack-data
 attrs==22.1.0
@@ -81,8 +83,11 @@ ipython-genutils==0.2.0
     #   notebook
 jedi==0.18.2
     # via ipython
+jinja-cli==1.2.2
+    # via -r requirements.in
 jinja2==3.1.2
     # via
+    #   jinja-cli
     #   jupyter-server
     #   jupyterlab
     #   jupyterlab-server
@@ -232,6 +237,8 @@ python-dateutil==2.8.2
     # via jupyter-client
 pytz==2022.6
     # via babel
+pyyaml==6.0
+    # via jinja-cli
 pyzmq==24.0.1
     # via
     #   ipykernel
@@ -304,6 +311,8 @@ webencodings==0.5.1
     #   tinycss2
 websocket-client==1.4.2
     # via jupyter-server
+xmltodict==0.13.0
+    # via jinja-cli
 zipp==3.11.0
     # via importlib-metadata
 
