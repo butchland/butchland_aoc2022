@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://butchland.github.io/butchland_aoc2022/about.html</loc>
-    <lastmod>2022-12-04T14:27:34.954Z</lastmod>
+    <lastmod>2022-12-06T15:21:03.082Z</lastmod>
   </url>
   <url>
     <loc>https://butchland.github.io/butchland_aoc2022/index.html</loc>
-    <lastmod>2022-12-04T14:27:37.489Z</lastmod>
+    <lastmod>2022-12-06T15:21:07.032Z</lastmod>
   </url>
   <url>
     <loc>https://butchland.github.io/butchland_aoc2022/exercises/day1.html</loc>
-    <lastmod>2022-12-04T14:27:40.241Z</lastmod>
+    <lastmod>2022-12-06T15:21:12.082Z</lastmod>
+  </url>
+  <url>
+    <loc>https://butchland.github.io/butchland_aoc2022/exercises/day5.html</loc>
+    <lastmod>2022-12-06T15:21:17.782Z</lastmod>
   </url>
   <url>
     <loc>https://butchland.github.io/butchland_aoc2022/exercises/day4.html</loc>
-    <lastmod>2022-12-04T14:27:43.187Z</lastmod>
+    <lastmod>2022-12-06T15:21:22.152Z</lastmod>
   </url>
   <url>
     <loc>https://butchland.github.io/butchland_aoc2022/exercises/day3.html</loc>
-    <lastmod>2022-12-04T14:27:46.210Z</lastmod>
+    <lastmod>2022-12-06T15:21:26.622Z</lastmod>
   </url>
   <url>
     <loc>https://butchland.github.io/butchland_aoc2022/exercises/day2.html</loc>
-    <lastmod>2022-12-04T14:27:49.612Z</lastmod>
+    <lastmod>2022-12-06T15:21:31.282Z</lastmod>
   </url>
 </urlset>
