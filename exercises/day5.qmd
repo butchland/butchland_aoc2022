@@ -7,6 +7,7 @@ jupyter: python3
 #| echo: false
 import nbdev.showdoc as sd
 from pprint import pprint
+import fastcore.all as fc
 ```
 
 ## Part 1
@@ -32,22 +33,116 @@ from butchland_aoc2022.day5 import *
 
 ```
 
+```{python}
+with open("day5/sample.txt") as f:
+    samples = f.read().splitlines() 
+```
+
+```{python}
+pprint(samples)
+```
+* create function that can compute the number of stacks
 
 ```{python}
 #| echo: false
-# sd.show_doc()
+sd.show_doc(get_stack_count)
 ```
 
-* Finally the answer for the top 1 given the input
+```{python}
+print(get_stack_count(samples))
+```
+* create a function to initialize `n` stacks
+```{python}
+#| echo: false
+sd.show_doc(init_stacks)
+```
 
 ```{python}
+init_stacks(3)
 
-print(f'the correct answer for part 1 is')
+```
+* create a function to split the samples into the stacks and the moves
+```{python}
+#| echo: false
+sd.show_doc(split_stack_moves)
+```
+
+```{python}
+stacks,moves = split_stack_moves(samples)
+pprint(stacks)
+pprint(moves)
+```
+
+* create a function that parses the stacks printout into a real stack data structure
+```{python}
+#| echo: false
+sd.show_doc(build_stacks)
+```
+```{python}
+n_stacks = get_stack_count(samples)
+stacks = build_stacks(stacks, n_stacks)
+print(stacks, n_stacks)
+```
+* build a function that can parse a move statement
+```{python}
+#| echo: false
+sd.show_doc(parse_move)
+```
+
+```{python}
+print(parse_move("move 1 from 2 to 1"))
+```
+* build a function that can execute a move
+
+```{python}
+#| echo: false
+sd.show_doc(execute_move)
+```
+
+```{python}
+print("before move:")
+pprint(stacks)
+print("performing move 1 from 2 to 1")
+execute_move(stacks,1,2,1)
+print("after move:")
+pprint(stacks)
+```
+
+* create a function to process the moves
+```{python}
+#| echo: false
+sd.show_doc(process_moves)
+```
+
+```{python}
+final_stacks = process_moves(samples)
+pprint(final_stacks)
+```
+* create a function to grab the top element for
+each stack and concatenate them into a string
+
+```{python}
+#| echo: false
+sd.show_doc(get_top_elements)
+```
+
+```{python}
+print(get_top_elements(final_stacks))
+```
+
+* Finally the answer for the top elements given the input
+
+```{python}
+input_stacks = process_moves(input)
+answer1 = get_top_elements(input_stacks)
+print(f'the correct answer for part 1 is {answer1}')
 ```
 
 ## Part 2
 
 ```{python}
-print(f'the correct answer for part 1 is')
+input_stacks2 = process_moves2(input)
+answer2 = get_top_elements(input_stacks2)
+print(f'the correct answer for part 2 is {answer2}')
 ```
 
