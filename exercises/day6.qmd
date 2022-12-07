@@ -28,8 +28,7 @@ print(input[:100])
 sample = "mjqjpqmgbljsphdztnvjfqwrcgsmlb"
 ```
 
-* Create a generator that returns the totals each time it iterates
-
+* Create a function that detects the start of the packet
 ```{python}
 def marker_count(input):
     window = []
@@ -50,11 +49,6 @@ print(f'the correct answer for part 1 is {marker_count(input)}')
 ```
 
 
-```{python}
-#| echo: false
-# sd.show_doc()
-```
-
 
 
 ## Part 2
@@ -62,7 +56,7 @@ print(f'the correct answer for part 1 is {marker_count(input)}')
 ```{python}
 sample2 = "mjqjpqmgbljsphdztnvjfqwrcgsmlb"
 ```
-
+* Modify the marker to count 14 instead of 4
 ```{python}
 def marker_count2(input):
     window = []
