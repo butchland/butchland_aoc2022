@@ -7,6 +7,7 @@ jupyter: python3
 #| echo: false
 import nbdev.showdoc as sd
 from pprint import pprint
+import fastcore.all as fc
 ```
 
 ## Part 1
@@ -23,8 +24,12 @@ this:
 #| echo: false
 pprint(input[:100])
 ```
+```{python}
+with open("day7/sample.txt") as f:
+    samples = f.read().splitlines()
+```
 
-* Create a generator that returns the totals each time it iterates
+* Create a function that processes the commands
 
 ```{python}
 #| echo: false
@@ -37,17 +42,59 @@ from butchland_aoc2022.day7 import *
 #| echo: false
 # sd.show_doc()
 ```
-
-* Finally the answer for the top 1 given the input
-
+* Test function on the sample data
 ```{python}
+sample_nodes = process_commands(samples)
+sample_lnodes = fc.L(sample_nodes)
+sample_tsize = sample_lnodes.attrgot("size").filter(lambda o: o < 100_000).sum()
 
-print(f'the correct answer for part 1 is')
+print(f'the  answer for samples  is {sample_tsize}')
+```
+
+* Finally the total of all the directories sized below 100_000 is:
+```{python}
+nodes = process_commands(input)
+lnodes = fc.L(nodes)
+tsize = lnodes.attrgot("size").filter(lambda o: o < 100_000).sum()
+
+print(f'the correct answer for part 1 is {tsize}')
 ```
 
 ## Part 2
 
+* Compute the free space (for the sample)
+
 ```{python}
-print(f'the correct answer for part 1 is')
+sample_free_space = 70_000_000 - sample_lnodes.attrgot("size")[0]
+print(sample_free_space)
+```
+
+* Compute the space need to delete (for the sample)
+```{python}
+sample_need_to_delete = 30_000_000 - sample_free_space
+print(sample_need_to_delete)
+```
+* Find the smallest size of the directories sized greater than the space needed to be deleted
+```{python}
+sample_delete_size = min(sample_lnodes.attrgot("size").filter(lambda o: o >= sample_need_to_delete))
+print(sample_delete_size)
+
+```
+* For the answer to part 2, run the same calculations
+
+```{python}
+free_space = 70_000_000 - lnodes.attrgot("size")[0]
+print(free_space)
+
+```
+```{python}
+need_to_delete = 30_000_000 - free_space
+print(need_to_delete)
+```
+
+```{python}
+delete_size = min(lnodes.attrgot("size").filter(lambda o: o >= need_to_delete))
+
+print(f'the correct answer for part 2 is {delete_size}')
 ```
 
