@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Advent of Code 2022 – day2</title>
+<title>Advent of Code 2022 - Day 7</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Day 2</h1>
+      <h1 class="quarto-secondary-nav-title">Day 7</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/day2.html" class="sidebar-item-text sidebar-link active">Day 2</a>
+  <a href="../exercises/day2.html" class="sidebar-item-text sidebar-link">Day 2</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/day7.html" class="sidebar-item-text sidebar-link">Day 7</a>
+  <a href="../exercises/day7.html" class="sidebar-item-text sidebar-link active">Day 7</a>
   </div>
 </li>
       </ul>
@@ -224,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Day 2</h1>
+<h1 class="title d-none d-lg-block">Day 7</h1>
 </div>
 
 
@@ -242,272 +242,204 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="part-1" class="level2">
 <h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
 <ul>
-<li>Read in input file contain list of moves</li>
-<li>each line contains 2 pairs:
-<ul>
-<li>the first column is the opponents move: Rock (A) Paper(B) Scissors(C)</li>
-<li>the second column is your move Rock (X) Paper(Y) Scissors (Z)</li>
-</ul></li>
+<li>Read in input file</li>
 </ul>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"day2/input.txt"</span>) <span class="im">as</span> f:</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> f.read().splitlines()</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pprint(<span class="bu">input</span>[:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"day7/input.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> f.read().splitlines()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>First 100 lines of input looks like this:</p>
+<div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
-<pre><code>['B Y', 'A Z', 'C Z', 'A Y', 'A Y']</code></pre>
+<pre><code>['$ cd /',
+ '$ ls',
+ '282959 btm',
+ 'dir fmfnpm',
+ 'dir gwlwp',
+ 'dir hchp',
+ '275929 hmbbjbf',
+ 'dir nsphznf',
+ 'dir phschqg',
+ '193293 rhpwvff',
+ 'dir spfwthmd',
+ 'dir wchdqb',
+ 'dir zlpmfh',
+ '191479 zlpmfh.gpt',
+ '$ cd fmfnpm',
+ '$ ls',
+ 'dir fgtqvq',
+ '194704 fwdvgnqp.fsm',
+ '48823 fwdwq.tsq',
+ '224991 mtjngt',
+ '79386 rdsgpfjb.sfn',
+ 'dir rvnwwfq',
+ 'dir wrzcjwc',
+ 'dir zlpmfh',
+ '$ cd fgtqvq',
+ '$ ls',
+ '293783 rjc.ncl',
+ '324635 wdjrhw',
+ '$ cd ..',
+ '$ cd rvnwwfq',
+ '$ ls',
+ '76914 btm',
+ '$ cd ..',
+ '$ cd wrzcjwc',
+ '$ ls',
+ 'dir fwdwq',
+ '2159 fzb.tjs',
+ 'dir lddhdslh',
+ 'dir mjp',
+ '284475 vclnlds',
+ '196284 zjtftd',
+ '$ cd fwdwq',
+ '$ ls',
+ '120795 jqnl.hzj',
+ '$ cd ..',
+ '$ cd lddhdslh',
+ '$ ls',
+ '293030 fzb',
+ 'dir gzj',
+ '$ cd gzj',
+ '$ ls',
+ 'dir qzgsswr',
+ '$ cd qzgsswr',
+ '$ ls',
+ '33681 qzgsswr.wmv',
+ '121649 sbjbw.shv',
+ '$ cd ..',
+ '$ cd ..',
+ '$ cd ..',
+ '$ cd mjp',
+ '$ ls',
+ '289491 btm',
+ '169221 jqnl.hzj',
+ '$ cd ..',
+ '$ cd ..',
+ '$ cd zlpmfh',
+ '$ ls',
+ '189296 ldgpvnh',
+ '$ cd ..',
+ '$ cd ..',
+ '$ cd gwlwp',
+ '$ ls',
+ 'dir dwcrnbj',
+ 'dir fmfnpm',
+ 'dir fwdwq',
+ 'dir hzpsts',
+ 'dir hzrq',
+ 'dir jzwpjtf',
+ 'dir lmmpmghg',
+ 'dir mnw',
+ 'dir qzgsswr',
+ 'dir zlpmfh',
+ '$ cd dwcrnbj',
+ '$ ls',
+ '182989 btm',
+ '145822 fwdvgnqp.fsm',
+ 'dir jbtfslcn',
+ 'dir lgbglc',
+ '293584 mfstl.hhp',
+ 'dir sbffqq',
+ 'dir zhvn',
+ '$ cd jbtfslcn',
+ '$ ls',
+ '195255 sbjbw.shv',
+ '$ cd ..',
+ '$ cd lgbglc',
+ '$ ls',
+ '261423 fmfnpm.rqh',
+ '323530 fzb.lmm',
+ '314800 hbl.blm']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<hr>
-<section id="match_value" class="level3">
-<h3 class="anchored" data-anchor-id="match_value">match_value</h3>
-<blockquote class="blockquote">
-<pre><code> match_value (your_piece:str, opp_piece:str)</code></pre>
-</blockquote>
-<p>Returns the value of the match between your piece and the opponent’s piece - if equal, returns 3, else if you win then return 6 else return 0</p>
-<table class="table table-sm table-striped">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>your_piece</td>
-<td>str</td>
-<td>your piece (Rock/Paper/Scissors)</td>
-</tr>
-<tr class="even">
-<td>opp_piece</td>
-<td>str</td>
-<td>opponent’s piece (Rock/Paper/Scissors)</td>
-</tr>
-<tr class="odd">
-<td><strong>Returns</strong></td>
-<td><strong>int</strong></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-</div>
-</div>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(match_value(<span class="st">"Rock"</span>,<span class="st">"Paper"</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(match_value(<span class="st">"Rock"</span>,<span class="st">"Scissors"</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(match_value(<span class="st">"Paper"</span>,<span class="st">"Paper"</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(match_value(<span class="st">"Paper"</span>,<span class="st">"Scissors"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0
-6
-3
-0</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"day7/sample.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> f.read().splitlines()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Create a function that computes the score for each line</li>
-</ul>
-<div class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display" data-execution_count="6">
-<hr>
-<section id="score" class="level3">
-<h3 class="anchored" data-anchor-id="score">score</h3>
-<blockquote class="blockquote">
-<pre><code> score (input:str)</code></pre>
-</blockquote>
-<p>Returns the score of each move by you and your opponent based on the combination of the match value plus the piece value.</p>
-<p>Your opponent’s and your move (Rock,Paper,Scissors) which are encoded A,B,C and by X,Y,Z respectively.</p>
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 9%">
-<col style="width: 38%">
-<col style="width: 52%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>input</td>
-<td>str</td>
-<td>a string containing your opponent’s and your move separated by a space</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>int</strong></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-</div>
-</div>
-<ul>
-<li>For each sequence of numbers punctuated by an empty line, sum up calories for each</li>
-<li>If sum of calories is greater than current max, set that as the current max</li>
+<li><p>Create a function that processes the commands</p></li>
+<li><p>Test function on the sample data</p></li>
 </ul>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(score(<span class="st">"A Y"</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(score(<span class="st">"B X"</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(score(<span class="st">"C Z"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sample_nodes <span class="op">=</span> process_commands(samples)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sample_lnodes <span class="op">=</span> fc.L(sample_nodes)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sample_tsize <span class="op">=</span> sample_lnodes.attrgot(<span class="st">"size"</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> o: o <span class="op">&lt;</span> <span class="dv">100_000</span>).<span class="bu">sum</span>()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the  answer for samples  is </span><span class="sc">{</span>sample_tsize<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>8
-1
-6</code></pre>
+<pre><code>the  answer for samples  is 95437</code></pre>
 </div>
 </div>
 <ul>
-<li>Finally the total score</li>
+<li>Finally the total of all the directories sized below 100_000 is:</li>
 </ul>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Hide</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Answer</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Click on the <strong>Answer</strong> tab to view the answer</p>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>total_score <span class="op">=</span> <span class="bu">sum</span>([score(l) <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">input</span>])</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 1 is </span><span class="sc">{</span>total_score<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nodes <span class="op">=</span> process_commands(<span class="bu">input</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lnodes <span class="op">=</span> fc.L(nodes)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>tsize <span class="op">=</span> lnodes.attrgot(<span class="st">"size"</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> o: o <span class="op">&lt;</span> <span class="dv">100_000</span>).<span class="bu">sum</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 1 is </span><span class="sc">{</span>tsize<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>the correct answer for part 1 is 10404</code></pre>
-</div>
-</div>
-</div>
+<pre><code>the correct answer for part 1 is 1491614</code></pre>
 </div>
 </div>
 </section>
 <section id="part-2" class="level2">
 <h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
 <ul>
-<li>Reinterpret your move to follow a strategy:
-<ul>
-<li>X means LOSE, Y means DRAW, Z means WIN</li>
-</ul></li>
-<li>Create a function that finds the piece to fulfill a strategy (WIN,LOSE or DRAW) based on the opponent piece</li>
+<li>Compute the free space (for the sample)</li>
 </ul>
 <div class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="9">
-<hr>
-<section id="find_strat_piece" class="level3">
-<h3 class="anchored" data-anchor-id="find_strat_piece">find_strat_piece</h3>
-<blockquote class="blockquote">
-<pre><code> find_strat_piece (opp_piece:str, your_strat:str)</code></pre>
-</blockquote>
-<p>Finds the piece that matches the strategy you picked given the opponent’s piece</p>
-<table class="table table-sm table-striped">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>opp_piece</td>
-<td>str</td>
-<td>your opponents piece (Rock, Paper,Scissors)</td>
-</tr>
-<tr class="even">
-<td>your_strat</td>
-<td>str</td>
-<td>your strategy (WIN,LOSE, DRAW)</td>
-</tr>
-<tr class="odd">
-<td><strong>Returns</strong></td>
-<td><strong>str</strong></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-</div>
-</div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(find_strat_piece(<span class="st">"Rock"</span>,<span class="st">"DRAW"</span>))</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(find_strat_piece(<span class="st">"Scissors"</span>,<span class="st">"WIN"</span>))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(find_strat_piece(<span class="st">"Paper"</span>,<span class="st">"LOSE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sample_free_space <span class="op">=</span> <span class="dv">70_000_000</span> <span class="op">-</span> sample_lnodes.attrgot(<span class="st">"size"</span>)[<span class="dv">0</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample_free_space)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rock
-Rock
-Rock</code></pre>
+<pre><code>21618835</code></pre>
 </div>
 </div>
 <ul>
-<li>Create a function that computes the score for each line based on the second item being the strategy</li>
+<li>Compute the space need to delete (for the sample)</li>
+</ul>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sample_need_to_delete <span class="op">=</span> <span class="dv">30_000_000</span> <span class="op">-</span> sample_free_space</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample_need_to_delete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>8381165</code></pre>
+</div>
+</div>
+<ul>
+<li>Find the smallest size of the directories sized greater than the space needed to be deleted</li>
 </ul>
 <div class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display" data-execution_count="11">
-<hr>
-<section id="score_strat_action" class="level3">
-<h3 class="anchored" data-anchor-id="score_strat_action">score_strat_action</h3>
-<blockquote class="blockquote">
-<pre><code> score_strat_action (input:str)</code></pre>
-</blockquote>
-<p>Returns the score given the opponents move and your strategy</p>
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 9%">
-<col style="width: 38%">
-<col style="width: 52%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>input</td>
-<td>str</td>
-<td>a string containing your opponent’s move and your strategy separated by a space</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>int</strong></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sample_delete_size <span class="op">=</span> <span class="bu">min</span>(sample_lnodes.attrgot(<span class="st">"size"</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> o: o <span class="op">&gt;=</span> sample_need_to_delete))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample_delete_size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>24933642</code></pre>
 </div>
 </div>
+<ul>
+<li>For the answer to part 2, run the same calculations</li>
+</ul>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(score_strat_action(<span class="st">"A Y"</span>))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(score_strat_action(<span class="st">"B X"</span>))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(score_strat_action(<span class="st">"C Z"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>free_space <span class="op">=</span> <span class="dv">70_000_000</span> <span class="op">-</span> lnodes.attrgot(<span class="st">"size"</span>)[<span class="dv">0</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(free_space)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>4
-1
-7</code></pre>
+<pre><code>23909866</code></pre>
 </div>
 </div>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Hide</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Answer</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<p>Click on the <strong>Answer</strong> tab to view the answer</p>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>total_strat_score <span class="op">=</span> <span class="bu">sum</span>([score_strat_action(l) <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">input</span>])</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 2 is </span><span class="sc">{</span>total_strat_score<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>need_to_delete <span class="op">=</span> <span class="dv">30_000_000</span> <span class="op">-</span> free_space</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(need_to_delete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>the correct answer for part 2 is 10334</code></pre>
+<pre><code>6090134</code></pre>
 </div>
 </div>
-</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>delete_size <span class="op">=</span> <span class="bu">min</span>(lnodes.attrgot(<span class="st">"size"</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> o: o <span class="op">&gt;=</span> need_to_delete))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 2 is </span><span class="sc">{</span>delete_size<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>the correct answer for part 2 is 6400111</code></pre>
 </div>
 </div>
 

@@ -42,6 +42,20 @@
     "text": "Part 2\n\nPart 2 is now easy, since we can handle top n\n\n\nHideAnswer\n\n\nClick on the Answer tab to view the answer\n\n\n\nmax_calories = sum_top_n(input, 3)\nprint(f'the correct answer for part 2 is {max_calories}')\n\nthe correct answer for part 2 is 213159"
   },
   {
+    "objectID": "exercises/day7.html",
+    "href": "exercises/day7.html",
+    "title": "Day 7",
+    "section": "",
+    "text": "Read in input file\n\n\nwith open(\"day7/input.txt\") as f:\n    input = f.read().splitlines()\n\nFirst 100 lines of input looks like this:\n\n\n['$ cd /',\n '$ ls',\n '282959 btm',\n 'dir fmfnpm',\n 'dir gwlwp',\n 'dir hchp',\n '275929 hmbbjbf',\n 'dir nsphznf',\n 'dir phschqg',\n '193293 rhpwvff',\n 'dir spfwthmd',\n 'dir wchdqb',\n 'dir zlpmfh',\n '191479 zlpmfh.gpt',\n '$ cd fmfnpm',\n '$ ls',\n 'dir fgtqvq',\n '194704 fwdvgnqp.fsm',\n '48823 fwdwq.tsq',\n '224991 mtjngt',\n '79386 rdsgpfjb.sfn',\n 'dir rvnwwfq',\n 'dir wrzcjwc',\n 'dir zlpmfh',\n '$ cd fgtqvq',\n '$ ls',\n '293783 rjc.ncl',\n '324635 wdjrhw',\n '$ cd ..',\n '$ cd rvnwwfq',\n '$ ls',\n '76914 btm',\n '$ cd ..',\n '$ cd wrzcjwc',\n '$ ls',\n 'dir fwdwq',\n '2159 fzb.tjs',\n 'dir lddhdslh',\n 'dir mjp',\n '284475 vclnlds',\n '196284 zjtftd',\n '$ cd fwdwq',\n '$ ls',\n '120795 jqnl.hzj',\n '$ cd ..',\n '$ cd lddhdslh',\n '$ ls',\n '293030 fzb',\n 'dir gzj',\n '$ cd gzj',\n '$ ls',\n 'dir qzgsswr',\n '$ cd qzgsswr',\n '$ ls',\n '33681 qzgsswr.wmv',\n '121649 sbjbw.shv',\n '$ cd ..',\n '$ cd ..',\n '$ cd ..',\n '$ cd mjp',\n '$ ls',\n '289491 btm',\n '169221 jqnl.hzj',\n '$ cd ..',\n '$ cd ..',\n '$ cd zlpmfh',\n '$ ls',\n '189296 ldgpvnh',\n '$ cd ..',\n '$ cd ..',\n '$ cd gwlwp',\n '$ ls',\n 'dir dwcrnbj',\n 'dir fmfnpm',\n 'dir fwdwq',\n 'dir hzpsts',\n 'dir hzrq',\n 'dir jzwpjtf',\n 'dir lmmpmghg',\n 'dir mnw',\n 'dir qzgsswr',\n 'dir zlpmfh',\n '$ cd dwcrnbj',\n '$ ls',\n '182989 btm',\n '145822 fwdvgnqp.fsm',\n 'dir jbtfslcn',\n 'dir lgbglc',\n '293584 mfstl.hhp',\n 'dir sbffqq',\n 'dir zhvn',\n '$ cd jbtfslcn',\n '$ ls',\n '195255 sbjbw.shv',\n '$ cd ..',\n '$ cd lgbglc',\n '$ ls',\n '261423 fmfnpm.rqh',\n '323530 fzb.lmm',\n '314800 hbl.blm']\n\n\n\nwith open(\"day7/sample.txt\") as f:\n    samples = f.read().splitlines()\n\n\nCreate a function that processes the commands\nTest function on the sample data\n\n\nsample_nodes = process_commands(samples)\nsample_lnodes = fc.L(sample_nodes)\nsample_tsize = sample_lnodes.attrgot(\"size\").filter(lambda o: o < 100_000).sum()\n\nprint(f'the  answer for samples  is {sample_tsize}')\n\nthe  answer for samples  is 95437\n\n\n\nFinally the total of all the directories sized below 100_000 is:\n\n\nnodes = process_commands(input)\nlnodes = fc.L(nodes)\ntsize = lnodes.attrgot(\"size\").filter(lambda o: o < 100_000).sum()\n\nprint(f'the correct answer for part 1 is {tsize}')\n\nthe correct answer for part 1 is 1491614"
+  },
+  {
+    "objectID": "exercises/day7.html#part-2",
+    "href": "exercises/day7.html#part-2",
+    "title": "Day 7",
+    "section": "Part 2",
+    "text": "Part 2\n\nCompute the free space (for the sample)\n\n\nsample_free_space = 70_000_000 - sample_lnodes.attrgot(\"size\")[0]\nprint(sample_free_space)\n\n21618835\n\n\n\nCompute the space need to delete (for the sample)\n\n\nsample_need_to_delete = 30_000_000 - sample_free_space\nprint(sample_need_to_delete)\n\n8381165\n\n\n\nFind the smallest size of the directories sized greater than the space needed to be deleted\n\n\nsample_delete_size = min(sample_lnodes.attrgot(\"size\").filter(lambda o: o >= sample_need_to_delete))\nprint(sample_delete_size)\n\n24933642\n\n\n\nFor the answer to part 2, run the same calculations\n\n\nfree_space = 70_000_000 - lnodes.attrgot(\"size\")[0]\nprint(free_space)\n\n23909866\n\n\n\nneed_to_delete = 30_000_000 - free_space\nprint(need_to_delete)\n\n6090134\n\n\n\ndelete_size = min(lnodes.attrgot(\"size\").filter(lambda o: o >= need_to_delete))\n\nprint(f'the correct answer for part 2 is {delete_size}')\n\nthe correct answer for part 2 is 6400111"
+  },
+  {
     "objectID": "exercises/day5.html",
     "href": "exercises/day5.html",
     "title": "Day 5",
