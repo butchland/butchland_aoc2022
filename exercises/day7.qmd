@@ -1,0 +1,53 @@
+---
+title: "Day 7"
+jupyter: python3
+---
+
+```{python}
+#| echo: false
+import nbdev.showdoc as sd
+from pprint import pprint
+```
+
+## Part 1
+
+* Read in input file 
+```{python}
+with open("day7/input.txt") as f:
+    input = f.read().splitlines()
+```
+First 100 lines of input looks like
+this:
+
+```{python}
+#| echo: false
+pprint(input[:100])
+```
+
+* Create a generator that returns the totals each time it iterates
+
+```{python}
+#| echo: false
+from butchland_aoc2022.day7 import *
+
+```
+
+
+```{python}
+#| echo: false
+# sd.show_doc()
+```
+
+* Finally the answer for the top 1 given the input
+
+```{python}
+
+print(f'the correct answer for part 1 is')
+```
+
+## Part 2
+
+```{python}
+print(f'the correct answer for part 1 is')
+```
+
