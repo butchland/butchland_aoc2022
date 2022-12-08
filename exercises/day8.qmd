@@ -23,13 +23,27 @@ this:
 #| echo: false
 pprint(input[:100])
 ```
+```{python}
+with open("day8/sample.txt") as f:
+    samples = f.read().splitlines()
+```
 
-* Create a generator that returns the totals each time it iterates
+```{python}
+[print(s) for s in samples];
+```
+
 
 ```{python}
 #| echo: false
+from importlib import reload
+import butchland_aoc2022.day8
 from butchland_aoc2022.day8 import *
+```
 
+```{python}
+sample_grid = init_grid(samples)
+sample_visibles = count_visible(sample_grid)
+print(f'sample visible count: {sample_visibles}')
 ```
 
 
@@ -38,16 +52,20 @@ from butchland_aoc2022.day8 import *
 # sd.show_doc()
 ```
 
-* Finally the answer for the top 1 given the input
+* Finally the answer for part 1
 
 ```{python}
+grid = init_grid(input)
+visibles = count_visible(grid)
 
-print(f'the correct answer for part 1 is')
+print(f'the correct answer for part 1 is {visibles}')
 ```
 
 ## Part 2
 
+
 ```{python}
-print(f'the correct answer for part 1 is')
+max_scenic_score = highest_scenic_score(grid)
+print(f'the correct answer for part 2 is {max_scenic_score}')
 ```
 
