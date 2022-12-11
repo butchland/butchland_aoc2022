@@ -24,7 +24,7 @@ this:
 pprint(input[:100])
 ```
 
-* Create a generator that returns the totals each time it iterates
+* A function that processes the moves 
 
 ```{python}
 #| echo: false
@@ -41,13 +41,14 @@ from butchland_aoc2022.day9 import *
 * Finally the answer for the top 1 given the input
 
 ```{python}
-
-print(f'the correct answer for part 1 is')
+rope, all_occupieds = process_moves(input, knots=2)
+print(f'the correct answer for part 1 is {len(all_occupieds)}')
 ```
 
 ## Part 2
 
 ```{python}
-print(f'the correct answer for part 1 is')
+rope2, all_occupieds2 = process_moves(input, knots=10)
+print(f'the correct answer for part 2 is {len(all_occupieds2)}')
 ```
 
