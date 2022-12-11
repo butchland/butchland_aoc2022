@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Advent of Code 2022 - Day 7</title>
+<title>Advent of Code 2022 - Day 9</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Day 7</h1>
+      <h1 class="quarto-secondary-nav-title">Day 9</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/day7.html" class="sidebar-item-text sidebar-link active">Day 7</a>
+  <a href="../exercises/day7.html" class="sidebar-item-text sidebar-link">Day 7</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -210,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/day9.html" class="sidebar-item-text sidebar-link">Day 9</a>
+  <a href="../exercises/day9.html" class="sidebar-item-text sidebar-link active">Day 9</a>
   </div>
 </li>
       </ul>
@@ -234,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Day 7</h1>
+<h1 class="title d-none d-lg-block">Day 9</h1>
 </div>
 
 
@@ -255,201 +255,133 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Read in input file</li>
 </ul>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"day7/input.txt"</span>) <span class="im">as</span> f:</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"day9/input.txt"</span>) <span class="im">as</span> f:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> f.read().splitlines()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>First 100 lines of input looks like this:</p>
 <div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
-<pre><code>['$ cd /',
- '$ ls',
- '282959 btm',
- 'dir fmfnpm',
- 'dir gwlwp',
- 'dir hchp',
- '275929 hmbbjbf',
- 'dir nsphznf',
- 'dir phschqg',
- '193293 rhpwvff',
- 'dir spfwthmd',
- 'dir wchdqb',
- 'dir zlpmfh',
- '191479 zlpmfh.gpt',
- '$ cd fmfnpm',
- '$ ls',
- 'dir fgtqvq',
- '194704 fwdvgnqp.fsm',
- '48823 fwdwq.tsq',
- '224991 mtjngt',
- '79386 rdsgpfjb.sfn',
- 'dir rvnwwfq',
- 'dir wrzcjwc',
- 'dir zlpmfh',
- '$ cd fgtqvq',
- '$ ls',
- '293783 rjc.ncl',
- '324635 wdjrhw',
- '$ cd ..',
- '$ cd rvnwwfq',
- '$ ls',
- '76914 btm',
- '$ cd ..',
- '$ cd wrzcjwc',
- '$ ls',
- 'dir fwdwq',
- '2159 fzb.tjs',
- 'dir lddhdslh',
- 'dir mjp',
- '284475 vclnlds',
- '196284 zjtftd',
- '$ cd fwdwq',
- '$ ls',
- '120795 jqnl.hzj',
- '$ cd ..',
- '$ cd lddhdslh',
- '$ ls',
- '293030 fzb',
- 'dir gzj',
- '$ cd gzj',
- '$ ls',
- 'dir qzgsswr',
- '$ cd qzgsswr',
- '$ ls',
- '33681 qzgsswr.wmv',
- '121649 sbjbw.shv',
- '$ cd ..',
- '$ cd ..',
- '$ cd ..',
- '$ cd mjp',
- '$ ls',
- '289491 btm',
- '169221 jqnl.hzj',
- '$ cd ..',
- '$ cd ..',
- '$ cd zlpmfh',
- '$ ls',
- '189296 ldgpvnh',
- '$ cd ..',
- '$ cd ..',
- '$ cd gwlwp',
- '$ ls',
- 'dir dwcrnbj',
- 'dir fmfnpm',
- 'dir fwdwq',
- 'dir hzpsts',
- 'dir hzrq',
- 'dir jzwpjtf',
- 'dir lmmpmghg',
- 'dir mnw',
- 'dir qzgsswr',
- 'dir zlpmfh',
- '$ cd dwcrnbj',
- '$ ls',
- '182989 btm',
- '145822 fwdvgnqp.fsm',
- 'dir jbtfslcn',
- 'dir lgbglc',
- '293584 mfstl.hhp',
- 'dir sbffqq',
- 'dir zhvn',
- '$ cd jbtfslcn',
- '$ ls',
- '195255 sbjbw.shv',
- '$ cd ..',
- '$ cd lgbglc',
- '$ ls',
- '261423 fmfnpm.rqh',
- '323530 fzb.lmm',
- '314800 hbl.blm']</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"day7/sample.txt"</span>) <span class="im">as</span> f:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> f.read().splitlines()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><p>Create a function that processes the commands</p></li>
-<li><p>Test function on the sample data</p></li>
-</ul>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sample_nodes <span class="op">=</span> process_commands(samples)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sample_lnodes <span class="op">=</span> fc.L(sample_nodes)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sample_tsize <span class="op">=</span> sample_lnodes.attrgot(<span class="st">"size"</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> o: o <span class="op">&lt;</span> <span class="dv">100_000</span>).<span class="bu">sum</span>()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the  answer for samples  is </span><span class="sc">{</span>sample_tsize<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>the  answer for samples  is 95437</code></pre>
+<pre><code>['U 1',
+ 'D 1',
+ 'R 1',
+ 'L 2',
+ 'D 2',
+ 'U 1',
+ 'R 2',
+ 'D 2',
+ 'U 1',
+ 'R 1',
+ 'L 1',
+ 'D 2',
+ 'R 2',
+ 'U 2',
+ 'L 1',
+ 'D 1',
+ 'U 1',
+ 'L 1',
+ 'D 2',
+ 'U 1',
+ 'D 1',
+ 'L 1',
+ 'U 2',
+ 'R 1',
+ 'L 1',
+ 'R 1',
+ 'L 1',
+ 'U 2',
+ 'L 2',
+ 'U 2',
+ 'L 1',
+ 'U 2',
+ 'D 1',
+ 'U 2',
+ 'D 1',
+ 'L 2',
+ 'U 1',
+ 'D 1',
+ 'U 2',
+ 'R 2',
+ 'D 2',
+ 'R 1',
+ 'D 2',
+ 'L 1',
+ 'U 1',
+ 'L 2',
+ 'D 2',
+ 'L 2',
+ 'R 1',
+ 'U 1',
+ 'L 2',
+ 'D 1',
+ 'U 1',
+ 'R 2',
+ 'L 2',
+ 'D 1',
+ 'R 1',
+ 'L 1',
+ 'R 2',
+ 'U 1',
+ 'R 2',
+ 'D 1',
+ 'U 1',
+ 'L 2',
+ 'D 1',
+ 'R 2',
+ 'D 1',
+ 'U 2',
+ 'R 1',
+ 'D 1',
+ 'R 2',
+ 'U 1',
+ 'L 2',
+ 'D 2',
+ 'U 2',
+ 'R 2',
+ 'L 1',
+ 'D 2',
+ 'R 1',
+ 'D 1',
+ 'U 2',
+ 'D 2',
+ 'L 2',
+ 'R 2',
+ 'L 2',
+ 'D 1',
+ 'R 2',
+ 'D 2',
+ 'L 1',
+ 'U 1',
+ 'D 1',
+ 'L 2',
+ 'U 1',
+ 'R 1',
+ 'D 1',
+ 'U 2',
+ 'D 1',
+ 'L 2',
+ 'D 2',
+ 'R 2']</code></pre>
 </div>
 </div>
 <ul>
-<li>Finally the total of all the directories sized below 100_000 is:</li>
+<li><p>A function that processes the moves</p></li>
+<li><p>Finally the answer for the top 1 given the input</p></li>
 </ul>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nodes <span class="op">=</span> process_commands(<span class="bu">input</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lnodes <span class="op">=</span> fc.L(nodes)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>tsize <span class="op">=</span> lnodes.attrgot(<span class="st">"size"</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> o: o <span class="op">&lt;</span> <span class="dv">100_000</span>).<span class="bu">sum</span>()</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 1 is </span><span class="sc">{</span>tsize<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rope, all_occupieds <span class="op">=</span> process_moves(<span class="bu">input</span>, knots<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 1 is </span><span class="sc">{</span><span class="bu">len</span>(all_occupieds)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>the correct answer for part 1 is 1491614</code></pre>
+<pre><code>the correct answer for part 1 is 6332</code></pre>
 </div>
 </div>
 </section>
 <section id="part-2" class="level2">
 <h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
-<ul>
-<li>Compute the free space (for the sample)</li>
-</ul>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sample_free_space <span class="op">=</span> <span class="dv">70_000_000</span> <span class="op">-</span> sample_lnodes.attrgot(<span class="st">"size"</span>)[<span class="dv">0</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample_free_space)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rope2, all_occupieds2 <span class="op">=</span> process_moves(<span class="bu">input</span>, knots<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 2 is </span><span class="sc">{</span><span class="bu">len</span>(all_occupieds2)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>21618835</code></pre>
-</div>
-</div>
-<ul>
-<li>Compute the space need to delete (for the sample)</li>
-</ul>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sample_need_to_delete <span class="op">=</span> <span class="dv">30_000_000</span> <span class="op">-</span> sample_free_space</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample_need_to_delete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>8381165</code></pre>
-</div>
-</div>
-<ul>
-<li>Find the smallest size of the directories sized greater than the space needed to be deleted</li>
-</ul>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sample_delete_size <span class="op">=</span> <span class="bu">min</span>(sample_lnodes.attrgot(<span class="st">"size"</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> o: o <span class="op">&gt;=</span> sample_need_to_delete))</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample_delete_size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>24933642</code></pre>
-</div>
-</div>
-<ul>
-<li>For the answer to part 2, run the same calculations</li>
-</ul>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>free_space <span class="op">=</span> <span class="dv">70_000_000</span> <span class="op">-</span> lnodes.attrgot(<span class="st">"size"</span>)[<span class="dv">0</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(free_space)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>23909866</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>need_to_delete <span class="op">=</span> <span class="dv">30_000_000</span> <span class="op">-</span> free_space</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(need_to_delete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>6090134</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>delete_size <span class="op">=</span> <span class="bu">min</span>(lnodes.attrgot(<span class="st">"size"</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> o: o <span class="op">&gt;=</span> need_to_delete))</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 2 is </span><span class="sc">{</span>delete_size<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>the correct answer for part 2 is 6400111</code></pre>
+<pre><code>the correct answer for part 2 is 2511</code></pre>
 </div>
 </div>
 

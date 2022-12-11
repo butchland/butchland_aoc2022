@@ -84,6 +84,20 @@
     "text": "Part 2\n\ninput_stacks2 = process_moves2(input)\nanswer2 = get_top_elements(input_stacks2)\nprint(f'the correct answer for part 2 is {answer2}')\n\nthe correct answer for part 2 is RWLWGJGFD"
   },
   {
+    "objectID": "exercises/day9.html",
+    "href": "exercises/day9.html",
+    "title": "Day 9",
+    "section": "",
+    "text": "Read in input file\n\n\nwith open(\"day9/input.txt\") as f:\n    input = f.read().splitlines()\n\nFirst 100 lines of input looks like this:\n\n\n['U 1',\n 'D 1',\n 'R 1',\n 'L 2',\n 'D 2',\n 'U 1',\n 'R 2',\n 'D 2',\n 'U 1',\n 'R 1',\n 'L 1',\n 'D 2',\n 'R 2',\n 'U 2',\n 'L 1',\n 'D 1',\n 'U 1',\n 'L 1',\n 'D 2',\n 'U 1',\n 'D 1',\n 'L 1',\n 'U 2',\n 'R 1',\n 'L 1',\n 'R 1',\n 'L 1',\n 'U 2',\n 'L 2',\n 'U 2',\n 'L 1',\n 'U 2',\n 'D 1',\n 'U 2',\n 'D 1',\n 'L 2',\n 'U 1',\n 'D 1',\n 'U 2',\n 'R 2',\n 'D 2',\n 'R 1',\n 'D 2',\n 'L 1',\n 'U 1',\n 'L 2',\n 'D 2',\n 'L 2',\n 'R 1',\n 'U 1',\n 'L 2',\n 'D 1',\n 'U 1',\n 'R 2',\n 'L 2',\n 'D 1',\n 'R 1',\n 'L 1',\n 'R 2',\n 'U 1',\n 'R 2',\n 'D 1',\n 'U 1',\n 'L 2',\n 'D 1',\n 'R 2',\n 'D 1',\n 'U 2',\n 'R 1',\n 'D 1',\n 'R 2',\n 'U 1',\n 'L 2',\n 'D 2',\n 'U 2',\n 'R 2',\n 'L 1',\n 'D 2',\n 'R 1',\n 'D 1',\n 'U 2',\n 'D 2',\n 'L 2',\n 'R 2',\n 'L 2',\n 'D 1',\n 'R 2',\n 'D 2',\n 'L 1',\n 'U 1',\n 'D 1',\n 'L 2',\n 'U 1',\n 'R 1',\n 'D 1',\n 'U 2',\n 'D 1',\n 'L 2',\n 'D 2',\n 'R 2']\n\n\n\nA function that processes the moves\nFinally the answer for the top 1 given the input\n\n\nrope, all_occupieds = process_moves(input, knots=2)\nprint(f'the correct answer for part 1 is {len(all_occupieds)}')\n\nthe correct answer for part 1 is 6332"
+  },
+  {
+    "objectID": "exercises/day9.html#part-2",
+    "href": "exercises/day9.html#part-2",
+    "title": "Day 9",
+    "section": "Part 2",
+    "text": "Part 2\n\nrope2, all_occupieds2 = process_moves(input, knots=10)\nprint(f'the correct answer for part 2 is {len(all_occupieds2)}')\n\nthe correct answer for part 2 is 2511"
+  },
+  {
     "objectID": "exercises/day4.html",
     "href": "exercises/day4.html",
     "title": "Day 4",
