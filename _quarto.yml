@@ -34,6 +34,8 @@ website:
           text: Day 8
         - href: exercises/day9.qmd 
           text: Day 9
+        - href: exercises/day10.qmd 
+          text: Day 10
 
  
   page-footer:
