@@ -41,13 +41,20 @@ from butchland_aoc2022.day10 import *
 * Finally the answer for the top 1 given the input
 
 ```{python}
-
-print(f'the correct answer for part 1 is')
+strengths = sum_strengths(input)
+print(f'the correct answer for part 1 is {strengths}')
 ```
 
 ## Part 2
 
 ```{python}
-print(f'the correct answer for part 1 is')
+cpu = CPU(input)
+pixels = list(cpu.draw_pixel())
+for i in range(0,240,40):
+    row = pixels[i:i+40]
+    s = "".join(row)
+    print(s)
+
+print("EHZFZHCZ")
 ```
 
