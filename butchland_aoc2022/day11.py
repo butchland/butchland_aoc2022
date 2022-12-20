@@ -4,12 +4,14 @@ __all__ = ["generate_monkeys", "round","run_rounds", "monkey_business","relief",
 import re
 from typing import Optional, Callable
 from numba import jit
+
+
 class Monkey:
     def __init__(self):
         self.inspections = 0
         self.id:Optional[int] = None
         self.items:list[int] = []
-        self.operation:Optional[Callable] = None
+        self.operation:Optional[Callable[[int,int],int]] = None
         self.test:Optional[int] = None
         self.action_true:Optional[int] = None
         self.action_false:Optional[int] = None
@@ -21,6 +23,24 @@ test_pat = r"Test: divisible by (\d+)"
 action_true_pat = r"If true: throw to monkey (\d+)"
 action_false_pat = r"If false: throw to monkey (\d+)"
 
+# def relief(worry:int) -> int:
+#     return worry // 3 
+relief=3
+# def no_relief(worry:int) -> int:
+#     return worry 
+no_relief=1
+
+# @jit(nopython=True)
+def xfm0(old:int, relief:int=no_relief) -> int: return  (old * 19)// relief
+
+# @jit(nopython=True)
+def xfm1(old:int, relief:int=no_relief) -> int: return  (old + 6)// relief
+
+# @jit(nopython=True)
+def xfm2(old:int, relief:int=no_relief) -> int: return  (old * old)// relief
+
+# @jit(nopython=True)
+def xfm3(old:int, relief:int=no_relief) -> int: return  (old + 3)// relief
 
 def generate_monkeys(inputs):
     monkey = Monkey()
@@ -45,10 +65,15 @@ def generate_monkeys(inputs):
 
         op_match = re.search(op_pat,line)
         if op_match is not None:
-            lambda_body = op_match.groups()[0]
-            lambda_str = f'lambda old: {lambda_body}'
-            lambda_func = eval(lambda_str)
-            monkey.operation = lambda_func
+            # lambda_body = op_match.groups()[0]
+            if monkey.id == 0:
+                monkey.operation = xfm0
+            elif monkey.id == 1:
+                monkey.operation = xfm1
+            elif monkey.id == 2:
+                monkey.operation = xfm2
+            elif monkey.id == 3:
+                monkey.operation = xfm3
             continue
 
         test_match = re.search(test_pat,line)
@@ -71,37 +96,32 @@ def generate_monkeys(inputs):
     yield monkey        
         
 
-def relief(worry:int) -> int:
-    return worry // 3 
 
-def no_relief(worry:int) -> int:
-    return worry 
+# @jit(nopython=True)
+def compute_new_worries(mitems:list[int], operation:Callable[[int,int],int], relief:int):
+    return [operation(item, relief) for item in mitems]
 
-@jit(no_python=True)
-def round(monkeys:list[Monkey], relief=relief) -> list[Monkey]:
+# @jit(nopython=True)
+def round(monkeys:list[Monkey], relief=relief) -> list[Monkey]:    
     for monkey in monkeys:
         mitems = monkey.items.copy()
         monkey.inspections += len(mitems)
-        for item in mitems:
-            # inspect
-            new_worry = monkey.operation(item)
-            # relief
-            new_worry = relief(new_worry)
-            # test
-            if monkey.test is not None:
-                # throw
-                remainder = new_worry % monkey.test
-                if remainder == 0:
-                    monkeys[monkey.action_true].items.append(new_worry)
-                else:
-                    monkeys[monkey.action_false].items.append(new_worry) # type: ignore
-            del monkey.items[0] # delete after throwing
+        # new_worries = [monkey.operation(item)//relief for item in mitems]    
+        new_worries = compute_new_worries(mitems, monkey.operation, relief)
+    
+        action_true = [new_worry for new_worry in new_worries if (new_worry % monkey.test) == 0]
+        action_false =  [new_worry for new_worry in new_worries if (new_worry % monkey.test) != 0]
+        monkeys[monkey.action_true].items.extend(action_true)
+        monkeys[monkey.action_false].items.extend(action_false)
+        monkey.items = [] # delete after throwing
     return monkeys
 
-@jit(nopython=True)
+# @jit()
 def run_rounds(monkeys:list[Monkey], rounds:int=20, relief=relief)-> list[Monkey]:
+    # for monkey in monkeys:
+
     for _ in range(rounds):
-        monkeys = round(monkeys, relief=relief)
+        monkeys = round(monkeys,relief=relief)
     return monkeys
 
 
