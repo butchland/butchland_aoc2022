@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Advent of Code 2022 - Day 9</title>
+<title>Advent of Code 2022 - Day 10</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Day 9</h1>
+      <h1 class="quarto-secondary-nav-title">Day 10</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -210,12 +210,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/day9.html" class="sidebar-item-text sidebar-link active">Day 9</a>
+  <a href="../exercises/day9.html" class="sidebar-item-text sidebar-link">Day 9</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/day10.html" class="sidebar-item-text sidebar-link">Day 10</a>
+  <a href="../exercises/day10.html" class="sidebar-item-text sidebar-link active">Day 10</a>
   </div>
 </li>
       </ul>
@@ -239,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Day 9</h1>
+<h1 class="title d-none d-lg-block">Day 10</h1>
 </div>
 
 
@@ -260,133 +260,145 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Read in input file</li>
 </ul>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"day9/input.txt"</span>) <span class="im">as</span> f:</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"day10/input.txt"</span>) <span class="im">as</span> f:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> f.read().splitlines()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>First 100 lines of input looks like this:</p>
 <div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
-<pre><code>['U 1',
- 'D 1',
- 'R 1',
- 'L 2',
- 'D 2',
- 'U 1',
- 'R 2',
- 'D 2',
- 'U 1',
- 'R 1',
- 'L 1',
- 'D 2',
- 'R 2',
- 'U 2',
- 'L 1',
- 'D 1',
- 'U 1',
- 'L 1',
- 'D 2',
- 'U 1',
- 'D 1',
- 'L 1',
- 'U 2',
- 'R 1',
- 'L 1',
- 'R 1',
- 'L 1',
- 'U 2',
- 'L 2',
- 'U 2',
- 'L 1',
- 'U 2',
- 'D 1',
- 'U 2',
- 'D 1',
- 'L 2',
- 'U 1',
- 'D 1',
- 'U 2',
- 'R 2',
- 'D 2',
- 'R 1',
- 'D 2',
- 'L 1',
- 'U 1',
- 'L 2',
- 'D 2',
- 'L 2',
- 'R 1',
- 'U 1',
- 'L 2',
- 'D 1',
- 'U 1',
- 'R 2',
- 'L 2',
- 'D 1',
- 'R 1',
- 'L 1',
- 'R 2',
- 'U 1',
- 'R 2',
- 'D 1',
- 'U 1',
- 'L 2',
- 'D 1',
- 'R 2',
- 'D 1',
- 'U 2',
- 'R 1',
- 'D 1',
- 'R 2',
- 'U 1',
- 'L 2',
- 'D 2',
- 'U 2',
- 'R 2',
- 'L 1',
- 'D 2',
- 'R 1',
- 'D 1',
- 'U 2',
- 'D 2',
- 'L 2',
- 'R 2',
- 'L 2',
- 'D 1',
- 'R 2',
- 'D 2',
- 'L 1',
- 'U 1',
- 'D 1',
- 'L 2',
- 'U 1',
- 'R 1',
- 'D 1',
- 'U 2',
- 'D 1',
- 'L 2',
- 'D 2',
- 'R 2']</code></pre>
+<pre><code>['addx 2',
+ 'addx 3',
+ 'addx 3',
+ 'addx -2',
+ 'addx 4',
+ 'noop',
+ 'addx 1',
+ 'addx 4',
+ 'addx 1',
+ 'noop',
+ 'addx 4',
+ 'addx 1',
+ 'noop',
+ 'addx 2',
+ 'addx 5',
+ 'addx -28',
+ 'addx 30',
+ 'noop',
+ 'addx 5',
+ 'addx 1',
+ 'noop',
+ 'addx -38',
+ 'noop',
+ 'noop',
+ 'noop',
+ 'noop',
+ 'addx 5',
+ 'addx 5',
+ 'addx 3',
+ 'addx 2',
+ 'addx -2',
+ 'addx 2',
+ 'noop',
+ 'noop',
+ 'addx -2',
+ 'addx 12',
+ 'noop',
+ 'addx 2',
+ 'addx 3',
+ 'noop',
+ 'addx 2',
+ 'addx -31',
+ 'addx 32',
+ 'addx 7',
+ 'noop',
+ 'addx -2',
+ 'addx -37',
+ 'addx 1',
+ 'addx 5',
+ 'addx 1',
+ 'noop',
+ 'addx 31',
+ 'addx -25',
+ 'addx -10',
+ 'addx 13',
+ 'noop',
+ 'noop',
+ 'addx 18',
+ 'addx -11',
+ 'addx 3',
+ 'noop',
+ 'noop',
+ 'addx 1',
+ 'addx 4',
+ 'addx -32',
+ 'addx 15',
+ 'addx 24',
+ 'addx -2',
+ 'noop',
+ 'addx -37',
+ 'noop',
+ 'noop',
+ 'noop',
+ 'addx 5',
+ 'addx 5',
+ 'addx 21',
+ 'addx -20',
+ 'noop',
+ 'addx 6',
+ 'addx 19',
+ 'addx -5',
+ 'addx -8',
+ 'addx -22',
+ 'addx 26',
+ 'addx -22',
+ 'addx 23',
+ 'addx 2',
+ 'noop',
+ 'noop',
+ 'noop',
+ 'addx 8',
+ 'addx -10',
+ 'addx -27',
+ 'addx 33',
+ 'addx -27',
+ 'noop',
+ 'addx 34',
+ 'addx -33',
+ 'addx 2',
+ 'addx 19']</code></pre>
 </div>
 </div>
 <ul>
-<li><p>A function that processes the moves</p></li>
+<li><p>Create a generator that returns the totals each time it iterates</p></li>
 <li><p>Finally the answer for the top 1 given the input</p></li>
 </ul>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rope, all_occupieds <span class="op">=</span> process_moves(<span class="bu">input</span>, knots<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 1 is </span><span class="sc">{</span><span class="bu">len</span>(all_occupieds)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>strengths <span class="op">=</span> sum_strengths(<span class="bu">input</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 1 is </span><span class="sc">{</span>strengths<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>the correct answer for part 1 is 6332</code></pre>
+<pre><code>the correct answer for part 1 is 14540</code></pre>
 </div>
 </div>
 </section>
 <section id="part-2" class="level2">
 <h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rope2, all_occupieds2 <span class="op">=</span> process_moves(<span class="bu">input</span>, knots<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'the correct answer for part 2 is </span><span class="sc">{</span><span class="bu">len</span>(all_occupieds2)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cpu <span class="op">=</span> CPU(<span class="bu">input</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pixels <span class="op">=</span> <span class="bu">list</span>(cpu.draw_pixel())</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">240</span>,<span class="dv">40</span>):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    row <span class="op">=</span> pixels[i:i<span class="op">+</span><span class="dv">40</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="st">""</span>.join(row)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(s)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"EHZFZHCZ"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>the correct answer for part 2 is 2511</code></pre>
+<pre><code>####.#..#.####.####.####.#..#..##..####.
+#....#..#....#.#.......#.#..#.#..#....#.
+###..####...#..###....#..####.#......#..
+#....#..#..#...#.....#...#..#.#.....#...
+#....#..#.#....#....#....#..#.#..#.#....
+####.#..#.####.#....####.#..#..##..####.
+EHZFZHCZ</code></pre>
 </div>
 </div>
 
