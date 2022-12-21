@@ -42,6 +42,7 @@ def xfm2(old:int, relief:int=no_relief) -> int: return  (old * old)// relief
 # @jit(nopython=True)
 def xfm3(old:int, relief:int=no_relief) -> int: return  (old + 3)// relief
 
+# @jit(nopython=True)
 def generate_monkeys(inputs):
     monkey = Monkey()
     for line in inputs:
@@ -104,16 +105,17 @@ def compute_new_worries(mitems:list[int], operation:Callable[[int,int],int], rel
 # @jit(nopython=True)
 def round(monkeys:list[Monkey], relief=relief) -> list[Monkey]:    
     for monkey in monkeys:
-        mitems = monkey.items.copy()
-        monkey.inspections += len(mitems)
-        # new_worries = [monkey.operation(item)//relief for item in mitems]    
-        new_worries = compute_new_worries(mitems, monkey.operation, relief)
-    
-        action_true = [new_worry for new_worry in new_worries if (new_worry % monkey.test) == 0]
-        action_false =  [new_worry for new_worry in new_worries if (new_worry % monkey.test) != 0]
-        monkeys[monkey.action_true].items.extend(action_true)
-        monkeys[monkey.action_false].items.extend(action_false)
-        monkey.items = [] # delete after throwing
+        if len(monkey.items) > 0:
+            mitems = monkey.items.copy()
+            monkey.inspections += len(mitems)
+            # new_worries = [monkey.operation(item)//relief for item in mitems]    
+            new_worries = compute_new_worries(mitems, monkey.operation, relief)
+        
+            action_true = [new_worry for new_worry in new_worries if (new_worry % monkey.test) == 0]
+            action_false =  [new_worry for new_worry in new_worries if (new_worry % monkey.test) != 0]
+            monkeys[monkey.action_true].items.extend(action_true)
+            monkeys[monkey.action_false].items.extend(action_false)
+            monkey.items = [] # delete after throwing
     return monkeys
 
 # @jit()

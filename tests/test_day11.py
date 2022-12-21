@@ -195,16 +195,11 @@ def test_long_no_reliefs(sm_samples):
 
     monkeys = run_rounds(monkeys, rounds=(100 - 20), relief=no_relief)
 
-    # monkeys = run_rounds(monkeys, rounds=(500 - 100), relief=no_relief)
-    # monkeys = run_rounds(monkeys, rounds=(700 - 500), relief=no_relief)
-    # monkeys = run_rounds(monkeys, rounds=(800 - 700), relief=no_relief)
+    monkeys = run_rounds(monkeys, rounds=(500 - 100), relief=no_relief)
+    monkeys = run_rounds(monkeys, rounds=(700 - 500), relief=no_relief)
+    monkeys = run_rounds(monkeys, rounds=(800 - 700), relief=no_relief)
 
-    # monkeys = run_rounds(monkeys, rounds=(1_000 - 800), relief=no_relief)
-    # assert monkeys[0].inspections == 5204
-    # assert monkeys[1].inspections == 4792
-    # assert monkeys[2].inspections == 199
-    # assert monkeys[3].inspections == 5192
-
+    monkeys = run_rounds(monkeys, rounds=(1_000 - 800), relief=no_relief)
 
     # monkeys = run_rounds(monkeys, rounds=(10_000 - 20), relief=no_relief)
     # assert monkeys[0].inspections == 52166
@@ -212,4 +207,12 @@ def test_long_no_reliefs(sm_samples):
     # assert monkeys[2].inspections == 1938
     # assert monkeys[3].inspections == 52013
  
+def test_long_no_reliefs2(sm_samples):
+    monkeys = list(generate_monkeys(sm_samples))
+    monkeys = run_rounds(monkeys, rounds=1000, relief=no_relief)
+    # assert monkeys[0].inspections == 5204
+    # assert monkeys[1].inspections == 4792
+    # assert monkeys[2].inspections == 199
+    # assert monkeys[3].inspections == 5192
+
 
