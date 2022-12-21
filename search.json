@@ -28,6 +28,20 @@
     "text": "Tech stack\n\npython\npytest\nquarto\nnbdev"
   },
   {
+    "objectID": "exercises/day11.html",
+    "href": "exercises/day11.html",
+    "title": "Day 11",
+    "section": "",
+    "text": "Read in input file\n\n\nwith open(\"day11/input.txt\") as f:\n    input = f.read().splitlines()\n\nFirst 100 lines of input looks like this:\n\n\n['Monkey 0:',\n '  Starting items: 92, 73, 86, 83, 65, 51, 55, 93',\n '  Operation: new = old * 5',\n '  Test: divisible by 11',\n '    If true: throw to monkey 3',\n '    If false: throw to monkey 4',\n '',\n 'Monkey 1:',\n '  Starting items: 99, 67, 62, 61, 59, 98',\n '  Operation: new = old * old',\n '  Test: divisible by 2',\n '    If true: throw to monkey 6',\n '    If false: throw to monkey 7',\n '',\n 'Monkey 2:',\n '  Starting items: 81, 89, 56, 61, 99',\n '  Operation: new = old * 7',\n '  Test: divisible by 5',\n '    If true: throw to monkey 1',\n '    If false: throw to monkey 5',\n '',\n 'Monkey 3:',\n '  Starting items: 97, 74, 68',\n '  Operation: new = old + 1',\n '  Test: divisible by 17',\n '    If true: throw to monkey 2',\n '    If false: throw to monkey 5',\n '',\n 'Monkey 4:',\n '  Starting items: 78, 73',\n '  Operation: new = old + 3',\n '  Test: divisible by 19',\n '    If true: throw to monkey 2',\n '    If false: throw to monkey 3',\n '',\n 'Monkey 5:',\n '  Starting items: 50',\n '  Operation: new = old + 5',\n '  Test: divisible by 7',\n '    If true: throw to monkey 1',\n '    If false: throw to monkey 6',\n '',\n 'Monkey 6:',\n '  Starting items: 95, 88, 53, 75',\n '  Operation: new = old + 8',\n '  Test: divisible by 3',\n '    If true: throw to monkey 0',\n '    If false: throw to monkey 7',\n '',\n 'Monkey 7:',\n '  Starting items: 50, 77, 98, 85, 94, 56, 89',\n '  Operation: new = old + 2',\n '  Test: divisible by 13',\n '    If true: throw to monkey 4',\n '    If false: throw to monkey 0']\n\n\n\nGenerate list of monkeys\nhave them run rounds\ncompute monkey business\nFinally the answer for part 1 given the input\n\n\nmonkeys = list(generate_monkeys(input, divisor=3))\nmonkeys = run_rounds(monkeys)\nmbusiness = monkey_business(monkeys)\n\n\nprint(f'the correct answer for part 1 is {mbusiness}')\n\nthe correct answer for part 1 is 120756"
+  },
+  {
+    "objectID": "exercises/day11.html#part-2",
+    "href": "exercises/day11.html#part-2",
+    "title": "Day 11",
+    "section": "Part 2",
+    "text": "Part 2\n\nlcm = extract_lcm(input)\nmonkeys = list(generate_monkeys(input,modulo=lcm, divisor=1))\nmonkeys = run_rounds(monkeys, rounds=10_000)\nprint('done!')\n\ndone!\n\n\n\nmbusiness2 = monkey_business(monkeys)\nprint(f'the correct answer for part 2 is {mbusiness2}')\n\nthe correct answer for part 2 is 39109444654"
+  },
+  {
     "objectID": "exercises/day1.html",
     "href": "exercises/day1.html",
     "title": "Day1",
@@ -166,5 +180,19 @@
     "title": "Day 2",
     "section": "Part 2",
     "text": "Part 2\n\nReinterpret your move to follow a strategy:\n\nX means LOSE, Y means DRAW, Z means WIN\n\nCreate a function that finds the piece to fulfill a strategy (WIN,LOSE or DRAW) based on the opponent piece\n\n\n\n\n\nfind_strat_piece\n\n find_strat_piece (opp_piece:str, your_strat:str)\n\nFinds the piece that matches the strategy you picked given the opponent’s piece\n\n\n\n\nType\nDetails\n\n\n\n\nopp_piece\nstr\nyour opponents piece (Rock, Paper,Scissors)\n\n\nyour_strat\nstr\nyour strategy (WIN,LOSE, DRAW)\n\n\nReturns\nstr\n\n\n\n\n\n\n\n\nprint(find_strat_piece(\"Rock\",\"DRAW\"))\nprint(find_strat_piece(\"Scissors\",\"WIN\"))\nprint(find_strat_piece(\"Paper\",\"LOSE\"))\n\nRock\nRock\nRock\n\n\n\nCreate a function that computes the score for each line based on the second item being the strategy\n\n\n\n\n\nscore_strat_action\n\n score_strat_action (input:str)\n\nReturns the score given the opponents move and your strategy\n\n\n\n\n\n\n\n\n\nType\nDetails\n\n\n\n\ninput\nstr\na string containing your opponent’s move and your strategy separated by a space\n\n\nReturns\nint\n\n\n\n\n\n\n\n\nprint(score_strat_action(\"A Y\"))\nprint(score_strat_action(\"B X\"))\nprint(score_strat_action(\"C Z\"))\n\n4\n1\n7\n\n\n\nHideAnswer\n\n\nClick on the Answer tab to view the answer\n\n\n\ntotal_strat_score = sum([score_strat_action(l) for l in input])\nprint(f'the correct answer for part 2 is {total_strat_score}')\n\nthe correct answer for part 2 is 10334"
+  },
+  {
+    "objectID": "notebooks/test_day11.html",
+    "href": "notebooks/test_day11.html",
+    "title": "Advent of Code 2022",
+    "section": "",
+    "text": "from butchland_aoc2022.day11 import *\n\n\nsm_input = \"\"\"Monkey 0:\n  Starting items: 79, 98\n  Operation: new = old * 19\n  Test: divisible by 23\n    If true: throw to monkey 2\n    If false: throw to monkey 3\n\nMonkey 1:\n  Starting items: 54, 65, 75, 74\n  Operation: new = old + 6\n  Test: divisible by 19\n    If true: throw to monkey 2\n    If false: throw to monkey 0\n\nMonkey 2:\n  Starting items: 79, 60, 97\n  Operation: new = old * old\n  Test: divisible by 13\n    If true: throw to monkey 1\n    If false: throw to monkey 3\n\nMonkey 3:\n  Starting items: 74\n  Operation: new = old + 3\n  Test: divisible by 17\n    If true: throw to monkey 0\n    If false: throw to monkey 1\"\"\"\n\n\ndef sm_samples():\n    return sm_input.splitlines()\n\n\nlcm = extract_lcm(sm_samples()); lcm\n\n96577\n\n\n\nmonkeys = list(generate_monkeys(sm_samples()))\n\n\nmonkeys2 = list(generate_monkeys(sm_samples(),divisor=3))\n\n\nmonkeys2[0].operation(3)\n\n19\n\n\n\nmonkeys2[1].operation(1)\n\n2\n\n\n\n7 // 3\n\n2\n\n\n\nmonkeys[1].operation(1)\n\n7\n\n\n\nmonkeys2[1].operation(15)\n\n7"
+  },
+  {
+    "objectID": "notebooks/test1.html",
+    "href": "notebooks/test1.html",
+    "title": "Advent of Code 2022",
+    "section": "",
+    "text": "3 * 4\n\n12\n\n\n\n2 * 4\n\n8\n\n\n\n3 * 2\n\n6\n\n\n\nns = list(range(12*8))\n\n\nmax(ns)\n\n95\n\n\n\nns2 = [i % 24 for i in ns]\n\n\nmax(ns2)\n\n23\n\n\n\nassert [i % 12 for i in ns] == [i % 12 for i in ns2]\n\n\nassert [i % 8 for i in ns] == [i % 8 for i in ns2]\n\n\n8*12\n\n96\n\n\n\n[i % 6 for i in ns]\n\n[0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0]\n\n\n\nimport math\n\n\nmath.lcm(12,8)\n\n24\n\n\n\nmath.lcm(23,19,13,17)\n\n96577\n\n\n\n[i % 1 for"
   }
 ]
