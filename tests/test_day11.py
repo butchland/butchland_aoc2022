@@ -37,6 +37,10 @@ def sm_samples():
 def test_read_samples(sm_samples):
     assert len(sm_samples) == 27
 
+def test_extract_lcm(sm_samples):
+    lcm = extract_lcm(sm_samples)
+    assert lcm == 96577
+
 def test_generate_monkeys(sm_samples):
     monkeys = list(generate_monkeys(sm_samples))
     assert len(monkeys) == 4
@@ -69,37 +73,37 @@ def test_generate_monkeys(sm_samples):
     assert monkeys[3].action_false == 1
     assert monkeys[3].action_true == 0
 
-# def test_generate_monkeys2(sm_samples):
-#     monkeys = list(generate_monkeys(sm_samples))
-#     assert len(monkeys) == 4
+def test_generate_monkeys2(sm_samples):
+    monkeys = list(generate_monkeys(sm_samples, divisor=3))
+    assert len(monkeys) == 4
 
-#     assert monkeys[0].id == 0
-#     assert monkeys[0].items == [79,98]
-#     assert monkeys[0].operation(3,relief) == 19 
-#     assert monkeys[0].test == 23
-#     assert monkeys[0].action_false == 3
-#     assert monkeys[0].action_true == 2
+    assert monkeys[0].id == 0
+    assert monkeys[0].items == [79,98]
+    assert monkeys[0].operation(3) == 19 
+    assert monkeys[0].test == 23
+    assert monkeys[0].action_false == 3
+    assert monkeys[0].action_true == 2
 
-#     assert monkeys[1].id == 1
-#     assert monkeys[1].items == [54, 65, 75, 74]
-#     assert monkeys[1].operation(15,relief) == 7 
-#     assert monkeys[1].test == 19
-#     assert monkeys[1].action_false == 0
-#     assert monkeys[1].action_true == 2
+    assert monkeys[1].id == 1
+    assert monkeys[1].items == [54, 65, 75, 74]
+    assert monkeys[1].operation(15) == 7 
+    assert monkeys[1].test == 19
+    assert monkeys[1].action_false == 0
+    assert monkeys[1].action_true == 2
 
-#     assert monkeys[2].id == 2
-#     assert monkeys[2].items == [79, 60, 97]
-#     assert monkeys[2].operation(3,relief) == 3 
-#     assert monkeys[2].test == 13
-#     assert monkeys[2].action_false == 3
-#     assert monkeys[2].action_true == 1
+    assert monkeys[2].id == 2
+    assert monkeys[2].items == [79, 60, 97]
+    assert monkeys[2].operation(3) == 3 
+    assert monkeys[2].test == 13
+    assert monkeys[2].action_false == 3
+    assert monkeys[2].action_true == 1
 
-#     assert monkeys[3].id == 3
-#     assert monkeys[3].items == [74]
-#     assert monkeys[3].operation(9,relief) == 4 
-#     assert monkeys[3].test == 17
-#     assert monkeys[3].action_false == 1
-#     assert monkeys[3].action_true == 0
+    assert monkeys[3].id == 3
+    assert monkeys[3].items == [74]
+    assert monkeys[3].operation(9) == 4 
+    assert monkeys[3].test == 17
+    assert monkeys[3].action_false == 1
+    assert monkeys[3].action_true == 0
 
 
 # def test_round_monkeys(sm_samples):

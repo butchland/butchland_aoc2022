@@ -61,9 +61,9 @@ def generate_monkeys(inputs, modulo=None, divisor=1):
         if op_match is not None:
             lambda_body = op_match.groups()[0]
             if modulo is not None:
-                lambda_str = f"lambda old: ({lambda_body} // {divisor}) % {modulo}"
+                lambda_str = f"lambda old: (({lambda_body}) // {divisor}) % {modulo}"
             else:
-                lambda_str = f"lambda old: ({lambda_body} // {divisor})"
+                lambda_str = f"lambda old: (({lambda_body}) // {divisor})"
             lambda_func = eval(lambda_str)
             monkey.operation = lambda_func
             continue
