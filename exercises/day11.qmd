@@ -43,7 +43,7 @@ from butchland_aoc2022.day11 import *
 * Finally the answer for part 1 given the input
 
 ```{python}
-monkeys = list(generate_monkeys(input))
+monkeys = list(generate_monkeys(input, divisor=3))
 monkeys = run_rounds(monkeys)
 mbusiness = monkey_business(monkeys)
 
@@ -53,29 +53,17 @@ print(f'the correct answer for part 1 is {mbusiness}')
 
 ## Part 2
 
-```{python}
-import cProfile
-```
 
 ```{python}
-monkeys= list(generate_monkeys(input, relief=no_relief))
-cProfile.run('run_rounds(monkeys, rounds=200)')
-```
-
-```{python}
-monkeys= list(generate_monkeys(input))
-cProfile.run('run_rounds(monkeys,rounds=200, relief=no_relief)')
-
-```
-
-```{python}
-monkeys = list(generate_monkeys(input))
-monkeys = run_rounds(monkeys, rounds=500, relief=no_relief)
+lcm = extract_lcm(input)
+monkeys = list(generate_monkeys(input,modulo=lcm, divisor=1))
+monkeys = run_rounds(monkeys, rounds=10_000)
 print('done!')
 
 ```
 
 ```{python}
-print(f'the correct answer for part 1 is')
+mbusiness2 = monkey_business(monkeys)
+print(f'the correct answer for part 2 is {mbusiness2}')
 ```
 
