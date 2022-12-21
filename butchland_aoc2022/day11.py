@@ -1,8 +1,8 @@
 __all__ = [ "extract_lcm",
             "generate_monkeys", 
-            # "round",
-            # "run_rounds", 
-            # "monkey_business",
+            "round",
+            "run_rounds", 
+            "monkey_business",
           ]
 
 # day11 
@@ -89,38 +89,35 @@ def generate_monkeys(inputs, modulo=None, divisor=1):
         
 
 
-# def compute_new_worries(mitems:list[int], operation:Callable[[int,int],int], relief:int):
-#     return [operation(item, relief) for item in mitems]
+def compute_new_worries(mitems:list[int], operation:Callable[[int],int]):
+    return [operation(item) for item in mitems]
 
-# def round(monkeys:list[Monkey], relief=relief) -> list[Monkey]:    
-#     for monkey in monkeys:
-#         if len(monkey.items) > 0:
-#             mitems = monkey.items.copy()
-#             monkey.inspections += len(mitems)
-#             # new_worries = [monkey.operation(item)//relief for item in mitems]    
-#             new_worries = compute_new_worries(mitems, monkey.operation, relief)
-        
-#             action_true = [new_worry for new_worry in new_worries if (new_worry % monkey.test) == 0]
-#             action_false =  [new_worry for new_worry in new_worries if (new_worry % monkey.test) != 0]
-#             monkeys[monkey.action_true].items.extend(action_true)
-#             monkeys[monkey.action_false].items.extend(action_false)
-#             monkey.items = [] # delete after throwing
-#     return monkeys
+def round(monkeys:list[Monkey]) -> list[Monkey]:    
+    for monkey in monkeys:
+        if len(monkey.items) > 0:
+            mitems = monkey.items.copy()
+            monkey.inspections += len(mitems)
+            new_worries = compute_new_worries(mitems, monkey.operation) # type: ignore        
+            action_true = [new_worry for new_worry in new_worries if (new_worry % monkey.test) == 0] # type: ignore     
+            action_false =  [new_worry for new_worry in new_worries if (new_worry % monkey.test) != 0] # type: ignore     
+            monkeys[monkey.action_true].items.extend(action_true)  # type: ignore 
+            monkeys[monkey.action_false].items.extend(action_false) # type: ignore
+            del monkey.items
+            monkey.items = [] # delete after throwing
+    return monkeys
 
 # # @jit()
-# def run_rounds(monkeys:list[Monkey], rounds:int=20, relief=relief)-> list[Monkey]:
-#     # for monkey in monkeys:
-
-#     for _ in range(rounds):
-#         monkeys = round(monkeys,relief=relief)
-#     return monkeys
+def run_rounds(monkeys:list[Monkey], rounds:int=20)-> list[Monkey]:
+    for _ in range(rounds):
+        monkeys = round(monkeys)
+    return monkeys
 
 
-# def monkey_business(monkeys:list[Monkey]) -> int:
-#     inspections = [m.inspections for m in monkeys]
-#     if len(inspections) < 2:
-#         return 0
-#     inspections.sort(reverse=True)
-#     return inspections[0] * inspections[1]
+def monkey_business(monkeys:list[Monkey]) -> int:
+    inspections = [m.inspections for m in monkeys]
+    if len(inspections) < 2:
+        return 0
+    inspections.sort(reverse=True)
+    return inspections[0] * inspections[1]
 
 
