@@ -1,17 +1,21 @@
-__all__ = ["generate_monkeys", "round","run_rounds", "monkey_business","relief","no_relief"]
+__all__ = [ "extract_lcm",
+            "generate_monkeys", 
+            # "round",
+            # "run_rounds", 
+            # "monkey_business",
+          ]
 
 # day11 
 import re
 from typing import Optional, Callable
-from numba import jit
-
+import math
 
 class Monkey:
     def __init__(self):
         self.inspections = 0
         self.id:Optional[int] = None
         self.items:list[int] = []
-        self.operation:Optional[Callable[[int,int],int]] = None
+        self.operation:Optional[Callable[[int],int]] = None
         self.test:Optional[int] = None
         self.action_true:Optional[int] = None
         self.action_false:Optional[int] = None
@@ -23,27 +27,16 @@ test_pat = r"Test: divisible by (\d+)"
 action_true_pat = r"If true: throw to monkey (\d+)"
 action_false_pat = r"If false: throw to monkey (\d+)"
 
-# def relief(worry:int) -> int:
-#     return worry // 3 
-relief=3
-# def no_relief(worry:int) -> int:
-#     return worry 
-no_relief=1
-
-# @jit(nopython=True)
-def xfm0(old:int, relief:int=no_relief) -> int: return  (old * 19)// relief
-
-# @jit(nopython=True)
-def xfm1(old:int, relief:int=no_relief) -> int: return  (old + 6)// relief
-
-# @jit(nopython=True)
-def xfm2(old:int, relief:int=no_relief) -> int: return  (old * old)// relief
-
-# @jit(nopython=True)
-def xfm3(old:int, relief:int=no_relief) -> int: return  (old + 3)// relief
-
-# @jit(nopython=True)
-def generate_monkeys(inputs):
+def extract_lcm(inputs):
+    divs = []
+    for line in inputs:
+        test_match = re.search(test_pat,line)
+        if test_match is not None:
+            test = test_match.groups()[0]
+            divs.append(int(test))
+    return math.lcm(*divs)
+        
+def generate_monkeys(inputs, modulo=None, divisor=1):
     monkey = Monkey()
     for line in inputs:
         if len(line) == 0:
@@ -66,15 +59,13 @@ def generate_monkeys(inputs):
 
         op_match = re.search(op_pat,line)
         if op_match is not None:
-            # lambda_body = op_match.groups()[0]
-            if monkey.id == 0:
-                monkey.operation = xfm0
-            elif monkey.id == 1:
-                monkey.operation = xfm1
-            elif monkey.id == 2:
-                monkey.operation = xfm2
-            elif monkey.id == 3:
-                monkey.operation = xfm3
+            lambda_body = op_match.groups()[0]
+            if modulo is not None:
+                lambda_str = f"lambda old: ({lambda_body} // {divisor}) % {modulo}"
+            else:
+                lambda_str = f"lambda old: ({lambda_body} // {divisor})"
+            lambda_func = eval(lambda_str)
+            monkey.operation = lambda_func
             continue
 
         test_match = re.search(test_pat,line)
@@ -98,40 +89,38 @@ def generate_monkeys(inputs):
         
 
 
-# @jit(nopython=True)
-def compute_new_worries(mitems:list[int], operation:Callable[[int,int],int], relief:int):
-    return [operation(item, relief) for item in mitems]
+# def compute_new_worries(mitems:list[int], operation:Callable[[int,int],int], relief:int):
+#     return [operation(item, relief) for item in mitems]
 
-# @jit(nopython=True)
-def round(monkeys:list[Monkey], relief=relief) -> list[Monkey]:    
-    for monkey in monkeys:
-        if len(monkey.items) > 0:
-            mitems = monkey.items.copy()
-            monkey.inspections += len(mitems)
-            # new_worries = [monkey.operation(item)//relief for item in mitems]    
-            new_worries = compute_new_worries(mitems, monkey.operation, relief)
+# def round(monkeys:list[Monkey], relief=relief) -> list[Monkey]:    
+#     for monkey in monkeys:
+#         if len(monkey.items) > 0:
+#             mitems = monkey.items.copy()
+#             monkey.inspections += len(mitems)
+#             # new_worries = [monkey.operation(item)//relief for item in mitems]    
+#             new_worries = compute_new_worries(mitems, monkey.operation, relief)
         
-            action_true = [new_worry for new_worry in new_worries if (new_worry % monkey.test) == 0]
-            action_false =  [new_worry for new_worry in new_worries if (new_worry % monkey.test) != 0]
-            monkeys[monkey.action_true].items.extend(action_true)
-            monkeys[monkey.action_false].items.extend(action_false)
-            monkey.items = [] # delete after throwing
-    return monkeys
+#             action_true = [new_worry for new_worry in new_worries if (new_worry % monkey.test) == 0]
+#             action_false =  [new_worry for new_worry in new_worries if (new_worry % monkey.test) != 0]
+#             monkeys[monkey.action_true].items.extend(action_true)
+#             monkeys[monkey.action_false].items.extend(action_false)
+#             monkey.items = [] # delete after throwing
+#     return monkeys
 
-# @jit()
-def run_rounds(monkeys:list[Monkey], rounds:int=20, relief=relief)-> list[Monkey]:
-    # for monkey in monkeys:
+# # @jit()
+# def run_rounds(monkeys:list[Monkey], rounds:int=20, relief=relief)-> list[Monkey]:
+#     # for monkey in monkeys:
 
-    for _ in range(rounds):
-        monkeys = round(monkeys,relief=relief)
-    return monkeys
+#     for _ in range(rounds):
+#         monkeys = round(monkeys,relief=relief)
+#     return monkeys
 
 
-def monkey_business(monkeys:list[Monkey]) -> int:
-    inspections = [m.inspections for m in monkeys]
-    if len(inspections) < 2:
-        return 0
-    inspections.sort(reverse=True)
-    return inspections[0] * inspections[1]
+# def monkey_business(monkeys:list[Monkey]) -> int:
+#     inspections = [m.inspections for m in monkeys]
+#     if len(inspections) < 2:
+#         return 0
+#     inspections.sort(reverse=True)
+#     return inspections[0] * inspections[1]
 
 
